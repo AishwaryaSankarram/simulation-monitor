@@ -4,7 +4,6 @@ import './App.css';
 import {MyMapComponent} from './components/map.jsx';
 import axios from 'axios';
 import HomePage from './containers/HomePage.jsx'
-import Dropdown from './components/dropdown.jsx'
 
 
 const styles = {

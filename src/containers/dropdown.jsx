@@ -3,6 +3,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import axios from 'axios';
+import { connect } from 'react-redux'
+import { bindActionCreators } from "redux";
+import { fetchCars } from '../actions/index'
 
 
 
@@ -12,7 +15,7 @@ const styles = {
   },
 };
 
-export default class Dropdown extends React.Component {
+class Dropdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +34,8 @@ export default class Dropdown extends React.Component {
   handleChange(event, index, value) {
     console.log("EVENT =>", event);
     this.setState({value: value});
-    this.props.fetchCars(index);
+    console.log(event.target.innerHTML);
+    this.props.fetchCars(value);
   }
 
   // populateDropdown() {
@@ -54,7 +58,7 @@ export default class Dropdown extends React.Component {
       console.log("KEYSTRING ", keyString);
       console.log("item.name ->", item.name)
       return (
-          <MenuItem key= {keyString} value={item.name} primaryText={item.name} />
+          <MenuItem key= {keyString} value={item} primaryText={item.name} />
         );
     });
 
@@ -71,3 +75,10 @@ export default class Dropdown extends React.Component {
     );
   }
 }
+
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchCars }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(Dropdown);

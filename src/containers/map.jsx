@@ -12,23 +12,20 @@ export default class MyMapContainer extends Component {
     }
   }
 
-  componentWillReceiveProps(props) {
-    console.log("Props for MapContainer =>", props);
+
+  render() {
+    let cars = this.props.cars;
     let chosenRoutes = [];
-    if(props.cars) {
-      props.cars.forEach( (car) => {
+    if(cars) {
+      cars.forEach( (car) => {
         chosenRoutes.push(car.poly);
       });
     }
-    this.setState({routes: chosenRoutes});
-  }
-
-  render() {
     return(
       <div>
       <MyMapComponent
         isMarkerShown
-        routes={this.state.routes}
+        routes={chosenRoutes}
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"/>
       </div>
     );

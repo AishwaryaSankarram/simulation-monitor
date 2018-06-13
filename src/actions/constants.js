@@ -1,0 +1,4 @@
+
+export const FETCH_ALL_SCENARIOS = "FETCH_ALL_SCENARIOS";
+
+export const FETCH_CARS = "FETCH_CARS"

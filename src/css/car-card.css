@@ -1,0 +1,50 @@
+.state_name{
+    font-size: 16px;
+}
+.stats_label{
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    float: left;
+}
+.stats_desc{
+    float: left;
+    /*font-size: 15px;*/
+}
+.lat_long .lat_point{
+    display: inline-block;
+}
+.speed{
+    clear: both;
+}
+.time_dest .stats_label{
+    width: 145px;
+}
+.time_dest .stats_desc{
+    width: calc(100% - 145px);
+    margin-top: -3px;
+    color: #d000ff;
+}
+.speed .stats_label{
+    width: 50px;
+}
+.speed .stats_desc{
+    width: calc(100% - 50px);
+    margin-top: -3px;
+    color: #d000ff;
+}
+.lat_long .stats_label{
+    width: 65px;
+}
+.lat_long .stats_desc{
+    width: calc(100% - 65px);
+    margin-top: -3px;
+    color: #d000ff;
+}
+.state_name .stats_label{
+    width: 45px;
+}
+.state_name .stats_desc{
+    width: calc(100% - 45px);
+    margin-top: -3px;
+}

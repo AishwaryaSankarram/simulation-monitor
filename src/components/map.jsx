@@ -1,4 +1,4 @@
-import { compose, withProps } from "recompose"
+import { compose, withProps, lifecycle } from "recompose"
 
 import React from 'react';
 
@@ -13,6 +13,19 @@ export const MyMapComponent = compose(
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
+  lifecycle({
+     componentDidMount() {
+       const refs = {};
+       this.setState({ setZoom: ref => {
+           refs.map = ref;
+           if (!ref) {
+             return;
+           }
+           // console.log("setzooom===>" + refs.map);
+           this.setState({ mapObj: refs.map});
+         } });
+     }
+ 	}),
   withScriptjs,
   withGoogleMap
 )((props) =>
@@ -20,7 +33,6 @@ export const MyMapComponent = compose(
     defaultZoom={14}
     defaultCenter={{ lat: 37.41185, lng: -121.99999000000003 }}
   >
-    {props.isMarkerShown && <Marker position={{ lat: -37.41185, lng: -121.99999000000003 }} icon={flagIcon} />}
     {props.routes && props.routes.map((route, index) => {
       console.log("ROUTE =>", route);
       let keyString = "route_" + index.toString()

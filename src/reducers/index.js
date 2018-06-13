@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import ScenariosReducer from './reducer-scenarios'
-import SelectedScenarioReducer from './selected-scenario'
+import ScenariosReducer from './scenarios'
+import CarsReducer from './cars'
 
 const rootReducer = combineReducers({
   scenarios: ScenariosReducer,
-  selectedScenario: SelectedScenarioReducer
+  cars: CarsReducer
 });
 
 export default rootReducer;

@@ -1,5 +1,6 @@
 import Api from '../utils/api.jsx'
 import axios from 'axios';
+import { FETCH_ALL_SCENARIOS, FETCH_CARS } from './constants.js'
 
 export function fetchAllScenarios() {
 
@@ -10,7 +11,7 @@ export function fetchAllScenarios() {
   let response = axios.get(baseUrl, {auth: auth});
 
   return {
-    type: "FETCH_ALL_SCENARIOS",
+    type: FETCH_ALL_SCENARIOS,
     payload: response
   }
 }
@@ -19,7 +20,7 @@ export function fetchCars(scenario) {
   console.log("FETCH CARS");
 
   return {
-    type:"FETCH_CARS",
+    type: FETCH_CARS,
     payload: scenario
   }
 }

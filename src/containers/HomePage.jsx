@@ -33,16 +33,10 @@ class HomePage extends Component {
 
   render() {
 
-    let selectedCars;
-    if(this.props.selectedScenario) {
-      selectedCars = this.props.selectedScenario.cars;
-    }
-    console.log("SELECTED SCENARIO ->", this.props.selectedScenario);
-    console.log("SELECTED CARS ->", selectedCars);
 
     return(
       <div>
-        <MyMapContainer cars={selectedCars}/>
+        <MyMapContainer cars={this.props.cars}/>
       </div>
     );
   }
@@ -51,7 +45,7 @@ class HomePage extends Component {
 
 function mapStateToProps(state) {
   return {
-    selectedScenario: state.selectedScenario
+    cars: state.cars
   }
 }
 

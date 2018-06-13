@@ -27,7 +27,6 @@ class HomePage extends Component {
   }
 
   componentWillMount(){
-    this.props.fetchAllScenarios();
 
 
   }
@@ -44,23 +43,16 @@ class HomePage extends Component {
     return(
       <div>
         <MyMapContainer cars={selectedCars}/>
-          {this.props.scenarios.length !== 0 && <Dropdown items={this.props.scenarios} /> }
-        <button onClick={this.props.fetchAllScenarios}>Fetch scenarios.</button>
       </div>
     );
   }
 
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAllScenarios }, dispatch);
-}
-
 function mapStateToProps(state) {
   return {
-    scenarios: state.scenarios,
     selectedScenario: state.selectedScenario
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps)(HomePage);

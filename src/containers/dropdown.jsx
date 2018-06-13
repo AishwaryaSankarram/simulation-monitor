@@ -35,7 +35,8 @@ class Dropdown extends React.Component {
     console.log("EVENT =>", event);
     this.setState({value: value});
     console.log(event.target.innerHTML);
-    this.props.fetchCars(value);
+    this.props.fetchSelectedScenario(value);
+    this.props.fetchCars(value)
   }
 
   // populateDropdown() {

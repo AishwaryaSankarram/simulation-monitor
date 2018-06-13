@@ -15,11 +15,11 @@ export function fetchAllScenarios() {
   }
 }
 
-export function fetchCars(scenarioName) {
+export function fetchCars(scenario) {
   console.log("FETCH CARS");
 
   return {
     type:"FETCH_CARS",
-    payload: scenarioName
+    payload: scenario
   }
 }

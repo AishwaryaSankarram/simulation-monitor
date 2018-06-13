@@ -4,6 +4,7 @@ import Dropdown from '../containers/dropdown.jsx'
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 import { fetchAllScenarios } from '../actions/index'
+import CarPanel from './car-panel'
 
 class HomePage extends Component {
 
@@ -36,6 +37,7 @@ class HomePage extends Component {
 
     return(
       <div>
+        <CarPanel />
         <MyMapContainer cars={this.props.cars}/>
       </div>
     );

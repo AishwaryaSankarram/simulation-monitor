@@ -4,8 +4,10 @@ import './App.css';
 import {MyMapComponent} from './components/map.jsx';
 import axios from 'axios';
 import HomePage from './containers/HomePage.jsx';
+import LoginPage from './containers/login-page.js'
 import Header from './layouts/header.js';
-import CarPanel from './containers/car-panel'
+import DisplayContainer from './containers/display-container.js'
+
 
 
 class App extends Component {
@@ -15,12 +17,12 @@ class App extends Component {
   }
 
 
+
   render() {
     return (
       <div className="App">
         <Header />
-        <CarPanel />
-        <HomePage />
+        <DisplayContainer />
       </div>
     );
   }

@@ -65,7 +65,7 @@ class Dropdown extends React.Component {
     //console.log("menuElements =>", menuElements);
 
     return(
-      <div>
+      <div style={{display: 'inline-block'}}>
         <MuiThemeProvider >
           <SelectField value={this.state.value} onChange={this.handleChange} style={styles.customWidth}>
             {menuElements}

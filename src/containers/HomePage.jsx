@@ -14,22 +14,12 @@ class HomePage extends Component {
       scenarios: false,
       cars: false
     }
-
-    this.fetchCars = this.fetchCars.bind(this);
   }
 
-  fetchCars(index) {
-    console.log("INDEX =>", index);
-    console.log("Scenarios =>", this.state.scenarios);
-    let chosenScenario = this.state.scenarios[index];
-    this.setState({cars: chosenScenario.cars});
-    console.log("Chosen Scenario ---->", chosenScenario);
 
-  }
-
-  componentWillMount(){
-
-
+  componentDidMount(){
+    let authPayload = {username: this.props.user.uuid, password: localStorage.getItem("pwd")};
+    this.props.fetchAllScenarios(authPayload);
   }
 
   render() {
@@ -45,10 +35,15 @@ class HomePage extends Component {
 
 }
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchAllScenarios }, dispatch);
+}
+
 function mapStateToProps(state) {
   return {
+    user: state.user,
     cars: state.cars
   }
 }
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

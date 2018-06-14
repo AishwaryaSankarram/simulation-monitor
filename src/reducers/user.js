@@ -2,10 +2,11 @@
 export default function(state = null, action) {
 
   switch(action.type) {
-    case "LOGIN_STATUS":
-      let obj = {...action.payload.data};
-      obj.pwd = action.pwd;
-      return obj;
+    case "LOGIN_SUCCESS":
+      return action.payload.data;
+    case "LOGIN_FAIL":
+      console.log("LOGIN FAILED");
+      return null;
   }
 
   return state;

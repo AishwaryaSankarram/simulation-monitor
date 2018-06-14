@@ -38,10 +38,17 @@ class LoginPage extends Component {
     let payload={
             "emailId":this.state.emailId,
             "password":this.state.password
-    }
+    };
+
+    this.setState({
+      emailId: "",
+      password: ""
+    });
 
     this.props.checkCredentials(payload);
+
   }
+
 
 
 
@@ -52,6 +59,7 @@ class LoginPage extends Component {
                       <div className="sing_in_wrapper clearfix">
                                <TextField
                                  hintText="Enter your email address"
+                                 value={this.state.emailId}
                                  floatingLabelText="Email Address"
                                  onChange={(event) => this.setState({emailId:event.target.value})}
                                 />
@@ -59,6 +67,7 @@ class LoginPage extends Component {
                                <TextField
                                  type="password"
                                  hintText="Enter your password"
+                                 value={this.state.password}
                                  floatingLabelText="Password"
                                  onChange={(event) => this.setState({password:event.target.value})}
                                 />

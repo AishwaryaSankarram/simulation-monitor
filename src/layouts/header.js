@@ -10,10 +10,6 @@ import { fetchAllScenarios } from '../actions/index';
 
 class Header extends Component {
 
- componentWillMount() {
-   this.props.fetchAllScenarios();
- }
-
 
  render() {
     return (
@@ -25,21 +21,18 @@ class Header extends Component {
                 </figure>
               </div>
               <div className="header-title">Simulation Monitor</div>
-              {this.props.scenarios.length !== 0 && <Dropdown items={this.props.scenarios} /> }
+              {this.props.user && this.props.scenarios.length !== 0 && <Dropdown items={this.props.scenarios} /> }
             </div>
         </header>
     );
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAllScenarios }, dispatch);
-}
-
 function mapStateToProps(state) {
   return {
+    user: state.user,
     scenarios: state.scenarios
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Header);

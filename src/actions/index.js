@@ -2,13 +2,12 @@ import Api from '../utils/api.jsx'
 import axios from 'axios';
 import { FETCH_ALL_SCENARIOS, FETCH_CARS } from './constants.js'
 
-export function fetchAllScenarios() {
+export function fetchAllScenarios(authPayload) {
 
   console.log("FETCH ALL SCENARIOS ACTION CALLED");
 
   const baseUrl = Api.baseUrl + "scenario/getAllScenarios";
-  const auth = {username: "71d94195-bdb4-409f-89d3-70353c2d31f0", password: "test"};
-  let response = axios.get(baseUrl, {auth: auth});
+  let response = axios.get(baseUrl, {auth: authPayload});
 
 
   return {
@@ -26,14 +25,12 @@ export function fetchCars(scenario) {
   }
 }
 
-export function checkCredentials(payload) {
+export async function checkCredentials(payload) {
 
 
   console.log("CHECKING USER CREDENTIALS...")
 
-  let returnObj;
-
-  let response = axios({
+  let response = await axios({
       method: 'post',
       url: Api.baseUrl + "user/login",
       data: payload,
@@ -42,11 +39,23 @@ export function checkCredentials(payload) {
       },
   });
 
+  console.log("RESPONSE ->", response);
 
-  return {
-    type: "LOGIN_STATUS",
-    payload: response,
-    pwd: payload.password
+  if(response.status === 200) {
+    localStorage.setItem("loginData",JSON.stringify(response.data));
+    localStorage.setItem("pwd",payload.password);
+    return {
+      type: "LOGIN_SUCCESS",
+      payload: response,
+      pwd: payload.password
+    }
+  } else {
+    return {
+      type: "LOGIN_FAIL",
+    }
   }
+
+
+
 
 }

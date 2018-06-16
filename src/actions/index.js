@@ -1,6 +1,6 @@
 import Api from '../utils/api.jsx'
 import axios from 'axios';
-import { FETCH_ALL_SCENARIOS, FETCH_CARS } from './constants.js'
+import { FETCH_ALL_SCENARIOS, FETCH_CARS, LOGIN_SUCCESS, LOGIN_FAIL, RENDER_LOGIN, UPDATE_EV } from './constants.js'
 
 export function fetchAllScenarios(authPayload) {
 
@@ -25,7 +25,7 @@ export function fetchCars(scenario) {
   }
 }
 
-export async function checkCredentials(payload) {
+export async function checkCredentials(payload, source) {
 
 
   console.log("CHECKING USER CREDENTIALS...")
@@ -45,17 +45,32 @@ export async function checkCredentials(payload) {
     localStorage.setItem("loginData",JSON.stringify(response.data));
     localStorage.setItem("pwd",payload.password);
     return {
-      type: "LOGIN_SUCCESS",
+      type: LOGIN_SUCCESS,
       payload: response,
       pwd: payload.password
     }
   } else {
-    return {
-      type: "LOGIN_FAIL",
+      if(source === "user") {
+        return {
+          type: LOGIN_FAIL
+        }
+    } else if (source === "history" ) {
+        return {
+          type: RENDER_LOGIN
+        }
     }
   }
+}
 
+export function renderLogin() {
+  return {
+    type: RENDER_LOGIN
+  }
+}
 
-
-
+export function updateEV(car) {
+  return {
+    type: UPDATE_EV,
+    payload: car
+  }
 }

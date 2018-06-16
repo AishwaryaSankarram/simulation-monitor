@@ -19,8 +19,7 @@ class Dropdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
-      value: "Please Select Scenario"
+      value: 1
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -34,7 +33,6 @@ class Dropdown extends React.Component {
   handleChange(event, index, value) {
     console.log("EVENT =>", event);
     this.setState({value: value});
-    console.log(event.target.innerHTML);
     this.props.fetchCars(value);
   }
 
@@ -67,7 +65,9 @@ class Dropdown extends React.Component {
     return(
       <div style={{display: 'inline-block'}}>
         <MuiThemeProvider >
-          <SelectField value={this.state.value} onChange={this.handleChange} style={styles.customWidth}>
+          <SelectField
+          value={this.state.value} onChange={this.handleChange} style={styles.customWidth}>
+              {this.state.value === 1 && <MenuItem value={1} primaryText={"Select A Scenario"} disabled={true}/>}
             {menuElements}
           </SelectField>
         </MuiThemeProvider>

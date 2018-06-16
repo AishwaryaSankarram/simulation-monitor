@@ -45,7 +45,7 @@ class LoginPage extends Component {
       password: ""
     });
 
-    this.props.checkCredentials(payload);
+    this.props.checkCredentials(payload, "user");
 
   }
 

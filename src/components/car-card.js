@@ -9,39 +9,39 @@ export default class CarCard extends Component {
   }
 
   render() {
+    let evClassName;
+    this.props.car.isEv ? evClassName = "load_ev_icon": evClassName = "load_ev_icon disable_ev"
+
     return (
-        <li id="rvli">
-          <div id="RV1">
+        <li style={{border: "2px solid " + this.props.color}} >
+          <div >
             <div class="state_name">
               <div class="stats_label">{"Name: "}</div>
               <div class="stats_desc">{this.props.name}</div>
-            </div>
-            <div class="state_name">
-              <div class="stats_label">{"Type: "}</div>
-              <div class="stats_desc">{this.props.type} </div>
-            </div>
+            </div><br />
             <div class="lat_long">
               <div class="stats_label">{"(lat,lng): "}</div>
               <div class="stats_desc">
-              {"("}<div id="latitudeRV1" class="lat_point">{this.props.latitude}
+              {"("}<div class="lat_point">{this.props.latitude}
               </div>{","}
-              <div id="longitudeRV1" class="lat_point">{this.props.longitude}</div>{")"}
+              <div class="lat_point">{this.props.longitude}</div>{")"}
               </div>
-            </div>
+            </div><br />
             <div class="time_dest">
               <div class="stats_label">{"Time to Destination: "}</div>
               <div class="stats_desc">
-                <div id="timeToDestRV1">{this.props.timeToDest + " sec"}</div>
+                <div>{this.props.timeToDest + " sec"}</div>
               </div>
-            </div>
+            </div><br />
             <div class="speed">
               <div class="stats_label">{"Speed: "}
               </div>
               <div class="stats_desc">
-                <div id="SpeedRV1">{this.props.speed}</div>
+                <div>{this.props.speed}</div>
               </div>
             </div>
           </div>
+          <div className={evClassName} title="This is your EV" onClick={()=>this.props.updateEV(this.props.car)}>EV</div>
         </li>
     )
   }

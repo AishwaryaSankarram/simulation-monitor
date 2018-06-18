@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import CarCard  from '../components/car-card';
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
-import { updateEV } from '../actions/index'
+import { updateEV } from '../actions/car-actions'
 import '../css/car-panel.css';
 
 class CarPanel extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { checkCredentials } from '../actions/index'
+import { checkCredentials } from '../actions/user-actions'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';

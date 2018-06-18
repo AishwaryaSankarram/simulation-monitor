@@ -5,6 +5,7 @@ export default function(state = null, action) {
   switch(action.type) {
     case FETCH_CARS:
       return action.payload.cars;
+
     case UPDATE_EV:
       let newState = [...state];
       let setToEV = newState.filter((car) => car === action.payload)[0];

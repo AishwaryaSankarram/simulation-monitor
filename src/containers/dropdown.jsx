@@ -5,7 +5,7 @@ import MenuItem from 'material-ui/MenuItem';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
-import { fetchCars } from '../actions/index'
+import { fetchCars } from '../actions/car-actions'
 
 
 

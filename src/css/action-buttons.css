@@ -1,0 +1,57 @@
+.action-button-container button {
+    background: rgb(0, 188, 212);
+    outline: none;
+    border: 1px solid #fff;
+    padding: 6px;
+    color: #fff;
+}
+
+.action-button-container button:disabled {
+    background: rgb(229, 229, 229);
+}
+
+.action-button-container button .fa {
+    margin: 0 5px;
+}
+
+.action-button-container {
+    float: right;
+    margin: 10px;
+}
+
+.priority-checkbox{
+    margin-top: -5px;
+    float: right;
+    margin-left: 0px;
+    word-wrap: break-word;
+}
+
+.priority-checkbox .switch-label{
+    font-family: sans-serif;
+    font-size: 14px;
+    margin-left: -5px;
+}
+
+.CustomizedSwitch-iOSSwitchBase-1.CustomizedSwitch-iOSChecked-2 + .CustomizedSwitch-iOSBar-3 {
+    background-color: rgb(0, 188, 212) !important;
+}
+
+/*For popover*/
+
+.settings-popover {
+    top: 40px !important;
+}
+
+.checkbox-list {
+    list-style-type: none;
+    width: 180px;
+}
+
+.checkbox-list li {
+    display:table;
+    margin:0px auto 0px 0px;
+}
+
+.checkbox-list li label{
+    padding-left: 0px;
+}

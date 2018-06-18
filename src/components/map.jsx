@@ -2,13 +2,15 @@ import { compose, withProps, lifecycle } from "recompose"
 
 import React from 'react';
 
+import { PreviewPolylines } from './preview-polylines'
+
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, Polyline } from "react-google-maps";
 
 import { flagIcon } from "../icons/flag.jsx";
 
 export const MyMapComponent = compose(
   withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAP7zU5-pog5MMw7dg8F24Q-QyeMDKzTwU",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `550px` }} />,
     mapElement: <div style={{ height: `100%` }} />,
@@ -33,12 +35,6 @@ export const MyMapComponent = compose(
     defaultZoom={14}
     defaultCenter={{ lat: 37.41185, lng: -121.99999000000003 }}
   >
-    {props.routes && props.routes.map((route, index) => {
-      console.log("ROUTE =>", route);
-      let keyString = "route_" + index.toString()
-      return(
-      <Polyline key={keyString} path={route} draggable={true} editable={false} />
-    );
-    })}
+  <PreviewPolylines routes={props.routes} />
   </GoogleMap>
 );

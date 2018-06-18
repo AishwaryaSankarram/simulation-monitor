@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
-import { checkCredentials, renderLogin } from '../actions/index'
+import { checkCredentials, renderLogin } from '../actions/user-actions'
 
 class DisplayContainer extends Component {
 
   constructor(props) {
-    super(props);
+    super(props);   
 
   }
 

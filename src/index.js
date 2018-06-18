@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 import reducers from './reducers';
+import 'font-awesome/css/font-awesome.min.css';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore)
 

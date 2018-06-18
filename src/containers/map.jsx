@@ -18,7 +18,7 @@ export default class MyMapContainer extends Component {
     let chosenRoutes = [];
     if(cars) {
       cars.forEach( (car) => {
-        chosenRoutes.push(car.poly);
+        chosenRoutes.push({poly: car.poly, color: car.color});
       });
     }
     return(

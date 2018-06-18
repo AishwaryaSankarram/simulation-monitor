@@ -9,8 +9,17 @@ export default class CarCard extends Component {
   }
 
   render() {
+
     let evClassName;
-    this.props.car.isEv ? evClassName = "load_ev_icon": evClassName = "load_ev_icon disable_ev"
+    let evDisplayText;
+
+    if(this.props.car.isEv) {
+      evClassName = "load_ev_icon";
+      evDisplayText = "EV";
+    } else {
+      evClassName = "load_ev_icon disable_ev";
+      evDisplayText = "RV";
+    }
 
     return (
         <li style={{border: "2px solid " + this.props.color}} >
@@ -41,7 +50,7 @@ export default class CarCard extends Component {
               </div>
             </div>
           </div>
-          <div className={evClassName} title="This is your EV" onClick={()=>this.props.updateEV(this.props.car)}>EV</div>
+          <div className={evClassName} title="This is your EV" onClick={()=>this.props.updateEV(this.props.car)}>{evDisplayText}</div>
         </li>
     )
   }

@@ -29,7 +29,7 @@ class Header extends Component {
               </div>
               <div className="header-title">Simulation Monitor</div>
               {this.props.user && <div><Dropdown items={this.props.scenarios} />
-              <ActionButtons userName={this.props.user.name} /></div> }
+              <ActionButtons userName={this.props.user.name} actionButtons={this.props.actionButtons} /></div> }
 
             </div>
         </header>
@@ -40,7 +40,8 @@ class Header extends Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    scenarios: state.scenarios
+    scenarios: state.scenarios,
+    actionButtons: state.actionButtons
   }
 }
 

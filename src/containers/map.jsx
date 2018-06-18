@@ -25,6 +25,7 @@ export default class MyMapContainer extends Component {
       <div>
       <MyMapComponent
         isMarkerShown
+        mapView={this.props.mapView}
         routes={chosenRoutes}
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"/>
       </div>

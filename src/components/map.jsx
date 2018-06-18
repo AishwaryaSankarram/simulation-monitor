@@ -35,6 +35,6 @@ export const MyMapComponent = compose(
     defaultZoom={14}
     defaultCenter={{ lat: 37.41185, lng: -121.99999000000003 }}
   >
-  <PreviewPolylines routes={props.routes} />
+  {props.mapView.previewMode && <PreviewPolylines routes={props.routes} />}
   </GoogleMap>
 );

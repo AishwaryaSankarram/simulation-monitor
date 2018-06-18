@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
 import '../css/action-buttons.css'
 
 
 export class ActionButtons extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      playEnabled: false,
+      replayEnabled: false,
+      warningViewEnabled: false
+    }
   }
 
   render() {
@@ -16,19 +23,19 @@ export class ActionButtons extends Component {
             </button>
         </div>
         <div className="action-button-container">
-              <button>
+              <button disabled={!this.props.actionButtons.warningViewEnabled}>
                 <i className="fa fa-exclamation-circle"></i>
               </button>
         </div>
 
         <div className="action-button-container">
-              <button>
+              <button disabled={!this.props.actionButtons.replayEnabled}>
                 <i className="fa fa-repeat"></i>
               </button>
           </div>
 
         <div className="action-button-container">
-                <button>
+                <button disabled={!this.props.actionButtons.playEnabled}>
                   <i className="fa fa-play"></i>
                 </button>
         </div>

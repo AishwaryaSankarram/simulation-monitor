@@ -27,8 +27,8 @@ class HomePage extends Component {
 
     return(
       <div>
-        <CarPanel />
-        <MyMapContainer cars={this.props.cars}/>
+        <CarPanel cars={this.props.cars} />
+        <MyMapContainer mapView={this.props.mapView} cars={this.props.cars}/>
       </div>
     );
   }
@@ -42,7 +42,9 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     user: state.user,
+    mapView: state.mapView,
     cars: state.cars
+
   }
 }
 

@@ -17,8 +17,6 @@ export async function checkCredentials(payload, source) {
       },
   });
 
-  console.log("RESPONSE ->", response);
-
   if(response.status === 200) {
     localStorage.setItem("loginData",JSON.stringify(response.data));
     localStorage.setItem("pwd",payload.password);

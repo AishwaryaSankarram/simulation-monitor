@@ -7,7 +7,7 @@ export default function(state = false, action) {
       return true;
     case LOGIN_SUCCESS:
       return false;
+    default:
+      return state;  
   }
-
-  return state;
 }

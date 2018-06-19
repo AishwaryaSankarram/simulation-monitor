@@ -4,10 +4,6 @@ import { carIcon } from '../images/car-icon';
 
 export class Vehicles extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let carMarkers = this.props.cars.map( (car,index) => {
       let icon = Object.assign({}, carIcon);

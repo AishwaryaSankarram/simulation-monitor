@@ -2,7 +2,6 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import axios from 'axios';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 import { fetchCars } from '../actions/car-actions'

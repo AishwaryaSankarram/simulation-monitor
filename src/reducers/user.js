@@ -10,7 +10,8 @@ export default function(state = null, action) {
       return null;
     case RENDER_LOGIN:
       return null;
+    default:
+      return state;  
   }
 
-  return state;
 }

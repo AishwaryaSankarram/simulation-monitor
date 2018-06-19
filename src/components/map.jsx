@@ -3,9 +3,8 @@ import React from 'react';
 import { PreviewPolylines } from './preview-polylines';
 import { Vehicles } from './vehicles'
 
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, Polyline } from "react-google-maps";
+import { withGoogleMap, GoogleMap} from "react-google-maps";
 
-import { flagIcon } from "../icons/flag.jsx";
 
 export const MyMapComponent = compose(
   withProps({

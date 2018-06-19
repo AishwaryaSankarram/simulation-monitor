@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import MyMapContainer from './map.jsx';
-import Dropdown from '../containers/dropdown.jsx'
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
-import { fetchAllScenarios } from '../actions/scenario-actions'
-import CarPanel from './car-panel'
+import { fetchAllScenarios } from '../actions/scenario-actions';
+import CarPanel from './car-panel';
 
 class HomePage extends Component {
 

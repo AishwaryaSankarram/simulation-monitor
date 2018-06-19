@@ -4,12 +4,6 @@ import logo from '../images/logo.png';
 import Dropdown from '../containers/dropdown.jsx';
 import { ActionButtons } from '../containers/action-buttons'
 import { connect } from 'react-redux';
-import { bindActionCreators } from "redux";
-import { fetchAllScenarios } from '../actions/index';
-import {MuiThemeProvider, RaisedButton} from 'material-ui';
-
-
-
 
 class Header extends Component {
 

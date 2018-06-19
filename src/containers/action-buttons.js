@@ -1,18 +1,8 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from "redux";
 import '../css/action-buttons.css'
 
 
 export class ActionButtons extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      playEnabled: false,
-      replayEnabled: false,
-      warningViewEnabled: false
-    }
-  }
 
   render() {
     return (

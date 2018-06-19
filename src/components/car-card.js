@@ -4,10 +4,6 @@ import '../css/car-card.css'
 
 export default class CarCard extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
 
     let evClassName;

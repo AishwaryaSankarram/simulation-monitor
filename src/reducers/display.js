@@ -26,8 +26,10 @@ export default function(state = null, action) {
         <div>
           <LoginPage />
         </div>
-      )
-  }
+      );
 
-  return state;
+    default:
+       return state;
+ }
+
 }

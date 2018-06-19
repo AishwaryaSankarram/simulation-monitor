@@ -1,14 +1,9 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 import { checkCredentials, renderLogin } from '../actions/user-actions'
 
 class DisplayContainer extends Component {
-
-  constructor(props) {
-    super(props);   
-
-  }
 
   componentWillMount() {
     if(localStorage.getItem("loginData") && localStorage.getItem("pwd")) {

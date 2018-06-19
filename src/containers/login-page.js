@@ -3,16 +3,10 @@ import { checkCredentials } from '../actions/user-actions'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import axios from 'axios';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 
 import '../css/login-page.css';
-
-const apiData = require('../utils/api.jsx');
-const apiUrl = apiData.baseUrl;
-
-
 
 const style = {
     margin: 15,
@@ -34,7 +28,6 @@ class LoginPage extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let self = this;
     let payload={
             "emailId":this.state.emailId,
             "password":this.state.password

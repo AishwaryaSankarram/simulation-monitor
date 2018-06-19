@@ -9,7 +9,11 @@ export default function(state = null, action) {
     case UPDATE_EV:
       let newState = [...state];
       let setToEV = newState.filter((car) => car === action.payload)[0];
-      setToEV.isEv = true;
+      if(setToEV.isEv) {
+        return state;
+      } else {
+        setToEV.isEv = true;
+      }
       let setToRV = newState.filter((car) => car !== action.payload);
       setToRV.forEach( (car) => {
         car.isEv = false;

@@ -28,6 +28,17 @@ export default function(state = null, action) {
         </div>
       );
 
+    case "PLAY_CLICKED":
+
+      return (
+        <div>
+          <div className="overlay">
+            <div className="overlayText">Simulation is starting up. Please Wait...</div>
+          </div>
+          <HomePage />
+        </div>
+      );
+
     default:
        return state;
  }

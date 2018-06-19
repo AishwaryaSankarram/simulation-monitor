@@ -16,15 +16,17 @@ export const MyMapComponent = compose(
      componentDidMount() {
        const refs = {};
        let routeArray = this.props.bounds;
+       console.log("ROUTE_ARRAY ->", routeArray);
        console.log("setting bounds===>" + refs.map);
        this.setState({ setZoom: ref => {
            refs.map = ref;
            if (!ref) {
              return;
            }
-           
+
            this.setState({ mapObj: refs.map});
-           if(routeArray && routeArray.length > 0)
+           console.log("REFS.MAP ->", refs.map);
+           if(routeArray)
                 refs.map.fitBounds(routeArray);
          } });
      },

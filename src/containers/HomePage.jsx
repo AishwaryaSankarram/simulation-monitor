@@ -18,7 +18,9 @@ class HomePage extends Component {
 
   componentDidMount(){
     let authPayload = {username: this.props.user.uuid, password: localStorage.getItem("pwd")};
-    this.props.fetchAllScenarios(authPayload);
+    if(!this.props.cars) {
+      this.props.fetchAllScenarios(authPayload);
+    }
   }
 
   render() {

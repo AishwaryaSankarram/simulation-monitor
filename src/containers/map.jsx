@@ -14,8 +14,9 @@ export default class MyMapContainer extends Component {
 
   render() {
     let cars = this.props.cars;
-    var latLngBounds = new window.google.maps.LatLngBounds();
+    var latLngBounds;
     if(cars) {
+      latLngBounds = new window.google.maps.LatLngBounds();
       cars.forEach( (car) => {
         if (car.poly.length > 0) {
           for (let i = 0; i < car.poly.length; i++) {

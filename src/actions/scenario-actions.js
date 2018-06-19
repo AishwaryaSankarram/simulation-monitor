@@ -1,6 +1,6 @@
 import Api from '../utils/api.jsx'
 import axios from 'axios';
-import { FETCH_ALL_SCENARIOS } from './constants.js'
+import { FETCH_ALL_SCENARIOS, PLAY_CLICKED } from './constants.js'
 
 export function fetchAllScenarios(authPayload) {
 
@@ -14,4 +14,13 @@ export function fetchAllScenarios(authPayload) {
     type: FETCH_ALL_SCENARIOS,
     payload: response
   }
+}
+
+export function startSimulation() {
+  console.log("PLAY BUTTON CLICKED");
+
+  return {
+    type: PLAY_CLICKED
+  }
+
 }

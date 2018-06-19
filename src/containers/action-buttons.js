@@ -25,7 +25,7 @@ export class ActionButtons extends Component {
           </div>
 
         <div className="action-button-container">
-                <button disabled={!this.props.actionButtons.playEnabled}>
+                <button disabled={!this.props.actionButtons.playEnabled} onClick={this.props.startSimulation}>
                   <i className="fa fa-play"></i>
                 </button>
         </div>

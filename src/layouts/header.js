@@ -4,6 +4,8 @@ import logo from '../images/logo.png';
 import Dropdown from '../containers/dropdown.jsx';
 import { ActionButtons } from '../containers/action-buttons'
 import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
+import { startSimulation } from '../actions/scenario-actions';
 
 class Header extends Component {
 
@@ -11,8 +13,14 @@ class Header extends Component {
     console.log("Menu clicked");
   }
 
+  startSimulation(event) {
+    console.log("STARTING SIMULATION");
+    this.props.startSimulation();
+  }
+
 
  render() {
+   console.log("THIS.PROPS.actionButtons ->", this.props.actionButtons)
     return (
         <header>
             <div className="header-part">
@@ -23,7 +31,7 @@ class Header extends Component {
               </div>
               <div className="header-title">Simulation Monitor</div>
               {this.props.user && <div>
-                  <ActionButtons userName={this.props.user.name} actionButtons={this.props.actionButtons} />
+                  <ActionButtons startSimulation={this.startSimulation.bind(this)} userName={this.props.user.name} actionButtons={this.props.actionButtons} />
                   <Dropdown items={this.props.scenarios} />
               </div> }
 
@@ -41,4 +49,8 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Header);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ startSimulation }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

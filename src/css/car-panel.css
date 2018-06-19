@@ -1,5 +1,10 @@
 .carPanel{
-    height: 125px;
+    height: 135px;
+}
+
+.carPanel ul{
+    margin-top: 10px;
+    height: 100%;
 }
 
 .carPanel ul li {
@@ -11,4 +16,5 @@
     margin: 0 10px;
     list-style: none;
     padding: 6px;
+    height: 100%;
 }

@@ -10,7 +10,7 @@ import { flagIcon } from "../icons/flag.jsx";
 export const MyMapComponent = compose(
   withProps({
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `550px` }} />,
+    containerElement: <div style={{ height: `550px` }} className="map-container" />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   lifecycle({

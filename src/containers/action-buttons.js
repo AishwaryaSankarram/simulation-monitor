@@ -16,7 +16,7 @@ export class ActionButtons extends Component {
 
   render() {
     return (
-      <div style={{display:'inline-block', float: 'right'}}>
+      <div className="pull-right">
         <div className="action-button-container ">
             <button>
               <i className="fa fa-user-circle"> {this.props.userName}</i>

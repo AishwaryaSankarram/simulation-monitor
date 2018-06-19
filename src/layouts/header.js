@@ -28,8 +28,10 @@ class Header extends Component {
                 </figure>
               </div>
               <div className="header-title">Simulation Monitor</div>
-              {this.props.user && <div><Dropdown items={this.props.scenarios} />
-              <ActionButtons userName={this.props.user.name} actionButtons={this.props.actionButtons} /></div> }
+              {this.props.user && <div>
+                  <ActionButtons userName={this.props.user.name} actionButtons={this.props.actionButtons} />
+                  <Dropdown items={this.props.scenarios} />
+              </div> }
 
             </div>
         </header>

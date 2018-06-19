@@ -44,7 +44,7 @@ class Dropdown extends React.Component {
 
 
     return(
-      <div style={{display: 'inline-block'}}>
+      <div className="pull-right">
         <MuiThemeProvider >
           <SelectField
           value={this.state.value} onChange={this.handleChange} style={styles.customWidth}>

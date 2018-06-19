@@ -31,8 +31,7 @@ export default class MyMapContainer extends Component {
         isMarkerShown
         mapView={this.props.mapView}
         bounds={latLngBounds}
-        cars={this.props.cars}
-        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"/>
+        cars={this.props.cars}/>
 
     );
 

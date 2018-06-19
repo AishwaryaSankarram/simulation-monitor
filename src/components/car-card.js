@@ -11,13 +11,15 @@ export default class CarCard extends Component {
   render() {
 
     let evClassName;
-    let evDisplayText;
+    let evDisplayText, title;
 
     if(this.props.car.isEv) {
       evClassName = "load_ev_icon";
+      title="This is your EV";
       evDisplayText = "EV";
     } else {
       evClassName = "load_ev_icon disable_ev";
+      title="Mark as EV";
       evDisplayText = "RV";
     }
 
@@ -32,7 +34,7 @@ export default class CarCard extends Component {
               <div className="stats_label">{"(lat,lng): "}</div>
               <div className="stats_desc">
               {"("}<div className="lat_point">{this.props.latitude}
-              </div>{","}
+              </div>{", "}
               <div className="lat_point">{this.props.longitude}</div>{")"}
               </div>
             </div><br />
@@ -50,7 +52,7 @@ export default class CarCard extends Component {
               </div>
             </div>
           </div>
-          <div className={evClassName} title="This is your EV" onClick={()=>this.props.updateEV(this.props.car)}>{evDisplayText}</div>
+          <div className={evClassName} title={title} onClick={()=>this.props.updateEV(this.props.car)}>{evDisplayText}</div>
         </li>
     )
   }

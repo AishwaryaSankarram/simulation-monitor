@@ -21,7 +21,7 @@ class CarPanel extends Component {
   renderCards() {
     let cards = this.props.cars.map( (car, index) =>
     {
-      return (<CarCard key={car.name+index.toString()} car={car} name={car.carLabel} color={car.color || "#000000"} type={car.type || "RV"} latitude={car.latitude || 0} longitude={car.longitude || 0} timeToDest={car.timeToDest || 0} speed={car.speed || 0} updateEV={this.updateEV}/>)
+      return (<CarCard key={car.name+index.toString()} car={car} name={car.carLabel} color={car.color || "#000000"} type={car.type || "RV"} latitude={car.latitude || car.poly[0].lat} longitude={car.longitude || car.poly[0].lng} timeToDest={car.timeToDest || 0} speed={car.speed || 0} updateEV={this.updateEV}/>)
     });
 
     return cards;

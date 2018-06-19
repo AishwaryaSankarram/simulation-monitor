@@ -10,7 +10,6 @@ import { flagIcon } from "../icons/flag.jsx";
 
 export const MyMapComponent = compose(
   withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAP7zU5-pog5MMw7dg8F24Q-QyeMDKzTwU",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `550px` }} />,
     mapElement: <div style={{ height: `100%` }} />,
@@ -18,20 +17,41 @@ export const MyMapComponent = compose(
   lifecycle({
      componentDidMount() {
        const refs = {};
+       let routeArray = this.props.bounds;
+       console.log("setting bounds===>" + refs.map);
        this.setState({ setZoom: ref => {
            refs.map = ref;
            if (!ref) {
              return;
            }
-           // console.log("setzooom===>" + refs.map);
+           
            this.setState({ mapObj: refs.map});
+           if(routeArray && routeArray.length > 0)
+                refs.map.fitBounds(routeArray);
          } });
-     }
+     },
+    componentWillReceiveProps(nextProps) {
+      var bounds = nextProps.bounds;
+      console.log("setting bounds 2===>");
+      const refs = {}
+        this.setState({
+        setZoom: ref => {
+          refs.map = ref
+          if (!ref) { return }
+          let mapBounds = refs.map.getBounds();
+          // if (this.props.event_name.length > 0) {
+            if (!(mapBounds.contains(bounds.getNorthEast()) && mapBounds.contains(bounds.getSouthWest()))) {
+              console.log("Change Bounds now");
+              refs.map.fitBounds(bounds);
+            }
+          // }
+        }
+      });
+    }
  	}),
-  withScriptjs,
   withGoogleMap
 )((props) =>
-  <GoogleMap
+  <GoogleMap ref={props.setZoom}
     defaultZoom={14}
     defaultCenter={{ lat: 37.41185, lng: -121.99999000000003 }}
   >

@@ -6,7 +6,6 @@ export default class MyMapContainer extends Component {
 
   constructor(props) {
     super(props)
-
     this.state = {
       routes: false
     }
@@ -16,19 +15,26 @@ export default class MyMapContainer extends Component {
   render() {
     let cars = this.props.cars;
     let chosenRoutes = [];
+    var latLngBounds = new window.google.maps.LatLngBounds();
     if(cars) {
       cars.forEach( (car) => {
         chosenRoutes.push({poly: car.poly, color: car.color});
+        if (car.poly.length > 0) {
+          for (let i = 0; i < car.poly.length; i++) {
+            let e = car.poly[i];
+              latLngBounds.extend(new window.google.maps.LatLng({ lat: e.lat, lng: e.lng }));
+          }
+        }
       });
     }
+    
     return(
-      <div>
       <MyMapComponent
         isMarkerShown
         mapView={this.props.mapView}
         routes={chosenRoutes}
-        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"/>
-      </div>
+        bounds={latLngBounds}
+        />
     );
 
   }

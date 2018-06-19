@@ -11,8 +11,8 @@ import { fetchCars } from '../actions/car-actions'
 
 const styles = {
   customWidth: {
-    width: 250,
-  },
+    width: 250
+  }
 };
 
 class Dropdown extends React.Component {
@@ -21,14 +21,8 @@ class Dropdown extends React.Component {
     this.state = {
       value: 1
     }
-
     this.handleChange = this.handleChange.bind(this);
-    //this.populateDropdown = this.populateDropdown.bind(this);
   }
-
-  // componentWillReceiveProps(props) {
-  //   this.setState({items: props.items});
-  // }
 
   handleChange(event, index, value) {
     console.log("EVENT =>", event);
@@ -36,18 +30,6 @@ class Dropdown extends React.Component {
     this.props.fetchCars(value);
   }
 
-  // populateDropdown() {
-  //   this.props.items.map( (item, index) => {
-  //     let keyString = "item" + index.toString();
-  //     console.log("KEYSTRING ", keyString);
-  //     console.log("item.name ->", item.name)
-  //     return (
-  //       <div key={keyString}>
-  //         <MenuItem value={index} primaryText={item.name} />
-  //       </div>
-  //     );
-  //   });
-  // }
 
   render() {
     console.log("MENU ITEMS =>", this.props.items);
@@ -60,7 +42,6 @@ class Dropdown extends React.Component {
         );
     });
 
-    //console.log("menuElements =>", menuElements);
 
     return(
       <div style={{display: 'inline-block'}}>

@@ -24,28 +24,28 @@ export default class CarCard extends Component {
     return (
         <li style={{border: "2px solid " + this.props.color}} >
           <div >
-            <div class="state_name">
-              <div class="stats_label">{"Name: "}</div>
-              <div class="stats_desc">{this.props.name}</div>
+            <div className="state_name">
+              <div className="stats_label">{"Name: "}</div>
+              <div className="stats_desc">{this.props.name}</div>
             </div><br />
-            <div class="lat_long">
-              <div class="stats_label">{"(lat,lng): "}</div>
-              <div class="stats_desc">
-              {"("}<div class="lat_point">{this.props.latitude}
+            <div className="lat_long">
+              <div className="stats_label">{"(lat,lng): "}</div>
+              <div className="stats_desc">
+              {"("}<div className="lat_point">{this.props.latitude}
               </div>{","}
-              <div class="lat_point">{this.props.longitude}</div>{")"}
+              <div className="lat_point">{this.props.longitude}</div>{")"}
               </div>
             </div><br />
-            <div class="time_dest">
-              <div class="stats_label">{"Time to Destination: "}</div>
-              <div class="stats_desc">
+            <div className="time_dest">
+              <div className="stats_label">{"Time to Destination: "}</div>
+              <div className="stats_desc">
                 <div>{this.props.timeToDest + " sec"}</div>
               </div>
             </div><br />
-            <div class="speed">
-              <div class="stats_label">{"Speed: "}
+            <div className="speed">
+              <div className="stats_label">{"Speed: "}
               </div>
-              <div class="stats_desc">
+              <div className="stats_desc">
                 <div>{this.props.speed}</div>
               </div>
             </div>

@@ -12,22 +12,18 @@ export class PreviewPolylines extends Component {
   }
 
   renderPolylines() {
-
-    let polylines = this.props.routes.map((route, index) => {
+    console.log("CARS ->", this.props.cars)
+    let polylines = this.props.cars.map((car, index) => {
       let icon = Object.assign({}, carIcon);
-      console.log("ICON =>", icon);
-      console.log("ROUTE =>", route);
-      icon.strokeColor = route.color || "#000000";
-      //icon.fillColor = route.color || "#000000";
-      console.log("CAR ICON =>", icon);
+      icon.strokeColor = car.color || "#000000";
       let previewIcon = [{
 			icon: icon,
 			offset: '0%'
 		  }];
-      let options = {strokeColor: route.color || "#000000", icons: previewIcon}
+      let options = {strokeColor: car.color || "#000000", icons: previewIcon}
       let keyString = "route_" + index.toString()
       return(
-      <Polyline key={keyString} path={route.poly} options={options} editable={false} />
+      <Polyline key={keyString} path={car.poly} options={options} editable={false} />
     );
   });
 
@@ -36,7 +32,7 @@ export class PreviewPolylines extends Component {
 
 
   render() {
-    if (this.props.routes) {
+    if (this.props.cars) {
       return (
         this.renderPolylines()
       );

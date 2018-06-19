@@ -15,7 +15,6 @@ class CarPanel extends Component {
   }
 
   updateEV(car) {
-    console.log("CAR OBJECT ->", car);
     this.props.updateEV(car);
   }
 

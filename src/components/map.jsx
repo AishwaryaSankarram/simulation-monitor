@@ -1,8 +1,7 @@
 import { compose, withProps, lifecycle } from "recompose"
-
 import React from 'react';
-
-import { PreviewPolylines } from './preview-polylines'
+import { PreviewPolylines } from './preview-polylines';
+import { Vehicles } from './vehicles'
 
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, Polyline } from "react-google-maps";
 
@@ -55,6 +54,8 @@ export const MyMapComponent = compose(
     defaultZoom={14}
     defaultCenter={{ lat: 37.41185, lng: -121.99999000000003 }}
   >
-  {props.mapView.previewMode && <PreviewPolylines routes={props.routes} />}
+  {props.mapView.previewMode && <PreviewPolylines cars={props.cars} />}
+  {props.mapView.playMode && <Vehicles cars={props.cars} />}
+
   </GoogleMap>
 );

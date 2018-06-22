@@ -6,6 +6,7 @@ import { ActionButtons } from '../containers/action-buttons'
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { startSimulation } from '../actions/scenario-actions';
+import { showWarnings } from '../actions/header-actions';
 
 class Header extends Component {
 
@@ -16,6 +17,10 @@ class Header extends Component {
   startSimulation(event) {
     console.log("STARTING SIMULATION");
     this.props.startSimulation();
+  }
+
+  displayWarnings(){
+    this.props.showWarnings(false);
   }
 
 
@@ -31,10 +36,11 @@ class Header extends Component {
               </div>
               <div className="header-title">Simulation Monitor</div>
               {this.props.user && <div>
-                  <ActionButtons startSimulation={this.startSimulation.bind(this)} userName={this.props.user.name} actionButtons={this.props.actionButtons} />
+                  <ActionButtons startSimulation={this.startSimulation.bind(this)} userName={this.props.user.name} 
+                  actionButtons={this.props.actionButtons} displayWarnings={this.displayWarnings.bind(this)}/>
                   <Dropdown items={this.props.scenarios} />
               </div> }
-
+                  
             </div>
         </header>
     );
@@ -45,12 +51,13 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     scenarios: state.scenarios,
-    actionButtons: state.actionButtons
+    actionButtons: state.actionButtons,
+    warningsShown: state.modalIsOpen
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ startSimulation }, dispatch);
+  return bindActionCreators({ startSimulation, showWarnings }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

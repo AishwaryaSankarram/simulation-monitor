@@ -2,20 +2,18 @@ import React, { Component } from 'react';
 import MyMapContainer from './map.jsx';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
+<<<<<<< HEAD
 import { fetchAllScenarios, newCarData, receiveSocketData } from '../actions/scenario-actions';
 import { Warnings } from '../components/warnings'
+=======
+import { fetchAllScenarios } from '../actions/scenario-actions';
+import { Warnings } from '../components/warnings';
+>>>>>>> d012fd3... Show Warnings  Modal
 import CarPanel from './car-panel';
+import MyModal from '../layouts/Modal.jsx';
+import '../css/home-page.css';
 
 class HomePage extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      scenarios: false,
-      cars: false
-    }
-  }
-
 
   componentDidMount(){
     let self = this;
@@ -48,14 +46,13 @@ class HomePage extends Component {
   }
 
   render() {
-
-
     return(
-      <div>
+      <div className="main-page">
         <CarPanel cars={this.props.cars} />
         <br />
         <Warnings warnings={this.props.warnings} />
         <MyMapContainer mapView={this.props.mapView} cars={this.props.cars}/>
+        <MyModal/>
       </div>
     );
   }

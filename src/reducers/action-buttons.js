@@ -9,10 +9,10 @@ export default function(state = actionButtonInitialState, action) {
       return {playEnabled: false, replayEnabled: false, warningViewEnabled: false};
 
     case FETCH_CARS:
-      return {playEnabled: true, replayEnabled: false, warningViewEnabled: false};
+      return {playEnabled: true, replayEnabled: false, warningViewEnabled: true};
 
     case PLAY_CLICKED:
-      return {playEnabled: false, replayEnabled: true, warningViewEnabled: false};
+      return {playEnabled: false, replayEnabled: true, warningViewEnabled: true};
 
     default:
        return state;

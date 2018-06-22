@@ -14,3 +14,5 @@ export const UPDATE_EV = "UPDATE_EV";
 export const PLAY_CLICKED = "PLAY_CLICKED";
 
 export const DATA_RECEIVED = "DATA_RECEIVED";
+
+export const SHOW_WARNINGS = "SHOW_WARNINGS";

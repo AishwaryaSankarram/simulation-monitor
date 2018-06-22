@@ -3,10 +3,11 @@ import ScenariosReducer from './scenarios';
 import CarsReducer from './cars';
 import UserReducer from './user';
 import LoginMessageReducer from './login-message';
-import DisplayReducer from './display'
-import ActionButtonsReducer from './action-buttons'
-import MapViewReducer from './map-view'
-import WarningsReducer from './warnings'
+import DisplayReducer from './display';
+import ActionButtonsReducer from './action-buttons';
+import MapViewReducer from './map-view';
+import HeaderReducer from "./header";
+import WarningsReducer from './warnings';
 
 const rootReducer = combineReducers({
   scenarios: ScenariosReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   loginMessage: LoginMessageReducer,
   actionButtons: ActionButtonsReducer,
   mapView: MapViewReducer,
-  warnings: WarningsReducer
+  warnings: WarningsReducer,
+  modalIsOpen: HeaderReducer
 });
 
 export default rootReducer;

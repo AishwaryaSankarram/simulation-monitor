@@ -1,0 +1,22 @@
+
+.logs-content table {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+
+.logs-content table thead th {
+    color: #31a536;
+}
+
+.logs-content table thead tr {
+    border: none;
+}
+
+.logs-content table tr {
+    border-bottom: 1px solid #292929;
+}
+
+.logs-content table tr td {
+    padding: 8px;
+}

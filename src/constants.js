@@ -1,7 +1,7 @@
 
-export const actionButtonInitialState = {playEnabled: false, replayEnabled: false, warningViewEnabled: false};
+export const actionButtonInitialState = { playEnabled: false, replayEnabled: false, warningViewEnabled: true };
 
-export const mapViewInitialState = {previewMode: false, playMode: false};
+export const mapViewInitialState = { previewMode: false, playMode: false, modalIsOpen: false };
 
 export const warningsInitialState = {
 	"FCW": 0,

@@ -13,7 +13,7 @@ export class ActionButtons extends Component {
             </button>
         </div>
         <div className="action-button-container">
-              <button disabled={!this.props.actionButtons.warningViewEnabled}>
+              <button disabled={!this.props.actionButtons.warningViewEnabled} onClick={this.props.displayWarnings}>
                 <i className="fa fa-exclamation-circle"></i>
               </button>
         </div>

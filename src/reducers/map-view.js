@@ -1,6 +1,6 @@
 import { FETCH_CARS } from '../actions/constants'
 
-import { mapViewInitialState } from '../constants'
+import { mapViewInitialState } from '../constants';
 
 export default function(state = mapViewInitialState, action) {
 

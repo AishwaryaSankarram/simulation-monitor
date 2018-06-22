@@ -8,54 +8,54 @@ export class Warnings extends Component {
 
   render() {
 
-  return (<div id="warnings" class="clearfix">
-    <div class="warrning_label">{"FCW"}
-      <span class="tooltiptext">{"Forward Collision Warning"}
+  return (<div id="warnings" className="clearfix">
+    <div className="warrning_label">{"FCW"}
+      <span className="tooltiptext">{"Forward Collision Warning"}
       </span>:
     </div>
-    <div class="warrning_desc">0</div>
-    <div class="warrning_label">FRCA
-      <span class="tooltiptext">Front Right Collision Alert</span>:
+    <div className="warrning_desc">0</div>
+    <div className="warrning_label">FRCA
+      <span className="tooltiptext">Front Right Collision Alert</span>:
     </div>
-    <div id="FRCA" class="warrning_desc">0</div>
-    <div class="warrning_label">FLCA
-      <span class="tooltiptext">Front Left Collision Alert</span>:
+    <div id="FRCA" className="warrning_desc">0</div>
+    <div className="warrning_label">FLCA
+      <span className="tooltiptext">Front Left Collision Alert</span>:
     </div>
-    <div id="FLCA" class="warrning_desc">0
+    <div id="FLCA" className="warrning_desc">0
     </div>
-    <div class="warrning_label">ICW
-      <span class="tooltiptext">Intersection Collision Warning</span>:
+    <div className="warrning_label">ICW
+      <span className="tooltiptext">Intersection Collision Warning</span>:
     </div>
-    <div id="ICW" class="warrning_desc">0</div>
-    <div class="warrning_label">EBW
-      <span class="tooltiptext">Emergency Brake Warning</span>:
+    <div id="ICW" className="warrning_desc">0</div>
+    <div className="warrning_label">EBW
+      <span className="tooltiptext">Emergency Brake Warning</span>:
     </div>
-    <div id="EBW" class="warrning_desc">0</div>
-    <div class="warrning_label">SMVA
-      <span class="tooltiptext">Slow Moving Vehicle Ahead</span>:
+    <div id="EBW" className="warrning_desc">0</div>
+    <div className="warrning_label">SMVA
+      <span className="tooltiptext">Slow Moving Vehicle Ahead</span>:
     </div>
-    <div id="SMVA" class="warrning_desc">0</div>
-    <div class="warrning_label">SVA
-      <span class="tooltiptext">Stopped Vehicle Ahead</span>:
+    <div id="SMVA" className="warrning_desc">0</div>
+    <div className="warrning_label">SVA
+      <span className="tooltiptext">Stopped Vehicle Ahead</span>:
     </div>
-    <div id="SVA" class="warrning_desc">0</div>
-    <div class="warrning_label">BSW
-      <span class="tooltiptext">Blind Spot Warning
+    <div id="SVA" className="warrning_desc">0</div>
+    <div className="warrning_label">BSW
+      <span className="tooltiptext">Blind Spot Warning
       </span>:
     </div>
-    <div id="BSW" class="warrning_desc">0</div>
-    <div class="warrning_label">LCW
-      <span class="tooltiptext">Lane Change Warning</span>:
+    <div id="BSW" className="warrning_desc">0</div>
+    <div className="warrning_label">LCW
+      <span className="tooltiptext">Lane Change Warning</span>:
     </div>
-    <div id="LCW" class="warrning_desc">0</div>
-    <div class="warrning_label">RRCA
-      <span class="tooltiptext">Rear Right Collision Alert</span>:
+    <div id="LCW" className="warrning_desc">0</div>
+    <div className="warrning_label">RRCA
+      <span className="tooltiptext">Rear Right Collision Alert</span>:
     </div>
-    <div id="RRCA" class="warrning_desc">0</div>
-    <div class="warrning_label">RLCA
-      <span class="tooltiptext">Rear Left Collision Alert</span>:
+    <div id="RRCA" className="warrning_desc">0</div>
+    <div className="warrning_label">RLCA
+      <span className="tooltiptext">Rear Left Collision Alert</span>:
     </div>
-    <div id="RLCA" class="warrning_desc">0</div>
+    <div id="RLCA" className="warrning_desc">0</div>
   </div>);
 
   }

@@ -1,6 +1,6 @@
 import Api from '../utils/api.jsx'
 import axios from 'axios';
-import { LOGIN_SUCCESS, LOGIN_FAIL, RENDER_LOGIN } from './constants.js'
+import { LOGIN_SUCCESS, LOGIN_FAIL, RENDER_LOGIN } from './constants.js';
 
 
 export async function checkCredentials(payload, source) {

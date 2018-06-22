@@ -1,17 +1,17 @@
 
 #warnings{
-        margin: 0px 30px 10px 30px;
-            color: #ff6464;
+  margin: 10px 30px 10px 30px;
+  color: #ff6464;
 }
 .warrning_label{
-    float: left;
-    font-size: 12px;
-    position: relative;
-    display: inline-block;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-align: right;
-    margin-right: 5px;
+  float: left;
+  font-size: 12px;
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: right;
+  margin-right: 5px;
 }
 
 /* Tooltip CSS */

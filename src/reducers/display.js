@@ -16,8 +16,8 @@ export default function(state = null, action) {
     case LOGIN_FAIL:
       return (
         <div>
-          <LoginPage />
           <div className="alert-danger" >{"Incorrect E-mail or Password Provided, please try again."}</div>
+          <LoginPage />
         </div>
       );
 

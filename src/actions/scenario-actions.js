@@ -1,6 +1,7 @@
 import Api from '../utils/api.jsx'
 import axios from 'axios';
 import { FETCH_ALL_SCENARIOS, PLAY_CLICKED } from './constants.js'
+import { callCommandForExecution } from '../utils/ssh-command'
 
 export async function fetchAllScenarios(authPayload) {
 
@@ -25,6 +26,9 @@ export async function fetchAllScenarios(authPayload) {
 
 export function startSimulation() {
   console.log("PLAY BUTTON CLICKED");
+
+  callCommandForExecution("/home/murali/py/sim_kill_port.py;/home/murali/py/sim_kill_port.py;/home/murali/py/sim_self_start.py;/home/murali/py/sim_stop.py;/home/murali/py/sim_start.py");
+
 
   return {
     type: PLAY_CLICKED

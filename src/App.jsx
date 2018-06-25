@@ -5,7 +5,7 @@ import DisplayContainer from './containers/display-container.js'
 import openSocket from 'socket.io-client';
 
 
-window.socket = openSocket("http://192.168.1.4:8089", { transports: ['websocket']});
+window.socket = openSocket("http://192.168.1.5:8088", { transports: ['websocket']});
 
 
 

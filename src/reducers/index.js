@@ -6,6 +6,7 @@ import LoginMessageReducer from './login-message';
 import DisplayReducer from './display'
 import ActionButtonsReducer from './action-buttons'
 import MapViewReducer from './map-view'
+import WarningsReducer from './warnings'
 
 const rootReducer = combineReducers({
   scenarios: ScenariosReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   display: DisplayReducer,
   loginMessage: LoginMessageReducer,
   actionButtons: ActionButtonsReducer,
-  mapView: MapViewReducer
+  mapView: MapViewReducer,
+  warnings: WarningsReducer
 });
 
 export default rootReducer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginPage from '../containers/login-page';
 import HomePage from '../containers/HomePage';
-import { LOGIN_SUCCESS, LOGIN_FAIL, RENDER_LOGIN } from '../actions/constants'
+import { LOGIN_SUCCESS, LOGIN_FAIL, RENDER_LOGIN, PLAY_CLICKED } from '../actions/constants'
 
 export default function(state = null, action) {
 
@@ -28,7 +28,7 @@ export default function(state = null, action) {
         </div>
       );
 
-    case "PLAY_CLICKED":
+    case PLAY_CLICKED:
 
       return (
         <div>

@@ -22,6 +22,15 @@ class HomePage extends Component {
     if(!this.props.cars) {
       this.props.fetchAllScenarios(authPayload);
     }
+    window.socket.on('console', function(data) {
+    	data = JSON.parse(data);
+		  console.log('RECEIVING : ', data);
+    });
+
+    window.socket.on('reset', function(data) {
+    	data = JSON.parse(data);
+		  console.log('Reset data : ', data);
+    });
   }
 
   render() {
@@ -30,7 +39,8 @@ class HomePage extends Component {
     return(
       <div>
         <CarPanel cars={this.props.cars} />
-        <Warnings />
+        <br />
+        <Warnings warnings={this.props.warnings} />
         <MyMapContainer mapView={this.props.mapView} cars={this.props.cars}/>
       </div>
     );
@@ -46,7 +56,8 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     mapView: state.mapView,
-    cars: state.cars
+    cars: state.cars,
+    warnings: state.warnings
 
   }
 }

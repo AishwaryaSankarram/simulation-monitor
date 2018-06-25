@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Modal from 'react-modal';
-import Warnings from '../containers/warnings';
+import WarningsTable from '../containers/warnings';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 import { showWarnings } from "../actions/header-actions";
@@ -13,7 +13,8 @@ const style = {
   }
 };
 
-class MyModal extends Component {
+class WarningsModal extends Component {
+  
 	constructor(props){
 		super(props);
     this.closeModal = this.closeModal.bind(this);
@@ -34,7 +35,7 @@ class MyModal extends Component {
           contentLabel="Warnings" className="warnings-modal" >
 					 <div className="confirmation-modal">
            <div className="modal-body">
-              <Warnings/>
+              <WarningsTable/>
 							</div>
 
             <div className="modal-footer">
@@ -57,4 +58,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ showWarnings }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (MyModal);
+export default connect(mapStateToProps, mapDispatchToProps) (WarningsModal);

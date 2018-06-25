@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../css/modal.css';
 
-export default class Warnings extends Component{
+export default class WarningsTable extends Component{
     render(){
         return(
             <div className="logs-content">

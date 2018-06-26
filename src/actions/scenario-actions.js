@@ -1,7 +1,6 @@
 import Api from '../utils/api.jsx'
 import axios from 'axios';
-import { FETCH_ALL_SCENARIOS, PLAY_CLICKED } from './constants.js'
-import { callCommandForExecution } from '../utils/ssh-command'
+import { FETCH_ALL_SCENARIOS, PLAY_CLICKED, DATA_RECEIVED } from './constants.js';
 
 export async function fetchAllScenarios(authPayload) {
 
@@ -24,9 +23,16 @@ export async function fetchAllScenarios(authPayload) {
   }
 }
 
+export function receiveSocketData(data) {
+  return {
+    type: DATA_RECEIVED,
+    content: data
+  }
+}
+
 export function startSimulation() {
   console.log("PLAY BUTTON CLICKED");
-  let sysCommand = "/home/murali/py/sim_kill_port.py;/home/murali/py/sim_kill_port.py;/home/murali/py/sim_self_start.py;/home/murali/py/sim_stop.py;/home/murali/py/sim_start.py";
+  // let sysCommand = "/home/murali/py/sim_kill_port.py;/home/murali/py/sim_kill_port.py;/home/murali/py/sim_self_start.py;/home/murali/py/sim_stop.py;/home/murali/py/sim_start.py";
 
   let sysCommand2 = "/home/murali/py/sim_stop.py;/home/murali/py/sim_start.py";
   //callCommandForExecution(sysCommand);

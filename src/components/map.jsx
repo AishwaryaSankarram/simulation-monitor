@@ -40,7 +40,7 @@ export const MyMapComponent = compose(
           if (!ref) { return }
           let mapBounds = refs.map.getBounds();
           // if (this.props.event_name.length > 0) {
-            if (!(mapBounds.contains(bounds.getNorthEast()) && mapBounds.contains(bounds.getSouthWest()))) {
+            if (bounds && !(mapBounds.contains(bounds.getNorthEast()) && mapBounds.contains(bounds.getSouthWest()))) {
               console.log("Change Bounds now");
               refs.map.fitBounds(bounds);
             }

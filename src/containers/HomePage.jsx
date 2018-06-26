@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MyMapContainer from './map.jsx';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
-import { fetchAllScenarios, newCarData } from '../actions/scenario-actions';
+import { fetchAllScenarios, newCarData, receiveSocketData } from '../actions/scenario-actions';
 import { Warnings } from '../components/warnings'
 import CarPanel from './car-panel';
 
@@ -18,7 +18,6 @@ class HomePage extends Component {
 
 
   componentDidMount(){
-
     let self = this;
     let authPayload = {username: this.props.user.uuid, password: localStorage.getItem("pwd")};
     if(!this.props.cars) {
@@ -26,9 +25,10 @@ class HomePage extends Component {
     }
 
     window.socket.on('console', function(data) {
-    	let msg = JSON.parse(data);
-		  //console.log('RECEIVING : ', msg);
+      let msg = JSON.parse(data);
+      // console.log('RECEIVING : ', data);
       self.props.newCarData(JSON.parse(msg.data));
+      self.props.receiveSocketData(JSON.parse(msg.data));
     });
 
     window.socket.on('reset', function(data) {
@@ -63,7 +63,7 @@ class HomePage extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAllScenarios, newCarData }, dispatch);
+  return bindActionCreators({ fetchAllScenarios, newCarData, receiveSocketData }, dispatch);
 }
 
 function mapStateToProps(state) {
@@ -71,7 +71,7 @@ function mapStateToProps(state) {
     user: state.user,
     mapView: state.mapView,
     cars: state.cars,
-    warnings: state.warnings
+    warnings: state.warnings.count
 
   }
 }

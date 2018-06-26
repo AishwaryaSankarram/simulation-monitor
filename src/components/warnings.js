@@ -9,9 +9,8 @@ export class Warnings extends Component {
   render() {
 
   return (<div id="warnings" className="clearfix">
-    <div className="warrning_label">{"FCW"}
-      <span className="tooltiptext">{"Forward Collision Warning"}
-      </span>:
+    <div className="warrning_label">FCW
+      <span className="tooltiptext">Forward Collision Warning</span>:
     </div>
     <div className="warrning_desc">{this.props.warnings["FCW"]}</div>
     <div className="warrning_label">FRCA

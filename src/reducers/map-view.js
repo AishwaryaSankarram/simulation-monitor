@@ -7,8 +7,10 @@ export default function(state = mapViewInitialState, action) {
   switch(action.type) {
     case FETCH_CARS:
       return {previewMode: true, playMode: false};
+    case "CAR_DATA":
+      return {previewMode: false, playMode: true};
     default:
-      return state; 
+      return state;
   }
 
 }

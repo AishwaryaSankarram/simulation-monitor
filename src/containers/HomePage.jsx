@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import MyMapContainer from './map.jsx';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
-import { fetchAllScenarios } from '../actions/scenario-actions';
+import { fetchAllScenarios, newCarData } from '../actions/scenario-actions';
 import { Warnings } from '../components/warnings'
 import CarPanel from './car-panel';
-import { socketStart } from '../constants.js'
 
 class HomePage extends Component {
 
@@ -19,13 +18,17 @@ class HomePage extends Component {
 
 
   componentDidMount(){
+
+    let self = this;
     let authPayload = {username: this.props.user.uuid, password: localStorage.getItem("pwd")};
     if(!this.props.cars) {
       this.props.fetchAllScenarios(authPayload);
     }
+
     window.socket.on('console', function(data) {
-    	data = JSON.parse(data);
-		  console.log('RECEIVING : ', data);
+    	let msg = JSON.parse(data);
+		  //console.log('RECEIVING : ', msg);
+      self.props.newCarData(JSON.parse(msg.data));
     });
 
     window.socket.on('reset', function(data) {
@@ -60,7 +63,7 @@ class HomePage extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAllScenarios }, dispatch);
+  return bindActionCreators({ fetchAllScenarios, newCarData }, dispatch);
 }
 
 function mapStateToProps(state) {

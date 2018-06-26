@@ -47,3 +47,10 @@ export function startSimulation() {
   }
 
 }
+
+export function newCarData(data) {
+  return {
+    type: "CAR_DATA",
+    payload: data
+  }
+}

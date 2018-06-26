@@ -17,13 +17,17 @@ export default class MyMapContainer extends Component {
     var latLngBounds;
     if(cars) {
       latLngBounds = new window.google.maps.LatLngBounds();
-      cars.forEach( (car) => {
-        if (car.poly.length > 0) {
-          for (let i = 0; i < car.poly.length; i++) {
-            let e = car.poly[i];
-              latLngBounds.extend(new window.google.maps.LatLng({ lat: e.lat, lng: e.lng }));
+        cars.forEach((car) => {
+          if (this.props.mapView.previewMode) {
+              if (car.poly.length > 0) {
+                for (let i = 0; i < car.poly.length; i++) {
+                  let e = car.poly[i];
+                    latLngBounds.extend(new window.google.maps.LatLng({ lat: e.lat, lng: e.lng }));
+                }
+              }
+          } else {
+            latLngBounds.extend(new window.google.maps.LatLng({ lat: car.latitude, lng: car.longitude }));
           }
-        }
       });
     }
 

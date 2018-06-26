@@ -32,9 +32,6 @@ export default function(state = null, action) {
 
       return (
         <div>
-          <div className="overlay">
-            <div className="overlayText">Simulation is starting up. Please Wait...</div>
-          </div>
           <HomePage />
         </div>
       );

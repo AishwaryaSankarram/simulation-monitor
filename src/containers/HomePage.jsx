@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { fetchAllScenarios } from '../actions/scenario-actions';
 import { Warnings } from '../components/warnings'
 import CarPanel from './car-panel';
+import { socketStart } from '../constants.js'
 
 class HomePage extends Component {
 
@@ -31,6 +32,16 @@ class HomePage extends Component {
     	data = JSON.parse(data);
 		  console.log('Reset data : ', data);
     });
+
+    window.socket.on('tcpClients', function(data){
+      console.log("RAW DATA =>", data);
+      console.log("DATA.LENGTH", data.length);
+      if(data.length > 0 && window.socketStart) {
+        console.log("Subscribing to data....");
+        window.socket.emit("subscribe", "192.168.1.5");
+      }
+
+    })
   }
 
   render() {

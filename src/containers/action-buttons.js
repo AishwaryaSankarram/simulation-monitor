@@ -19,7 +19,7 @@ export class ActionButtons extends Component {
         </div>
 
         <div className="action-button-container">
-              <button disabled={!this.props.actionButtons.replayEnabled}>
+              <button disabled={!this.props.actionButtons.replayEnabled} onClick={this.props.startSimulation}>
                 <i className="fa fa-repeat"></i>
               </button>
           </div>

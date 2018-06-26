@@ -26,9 +26,21 @@ export async function fetchAllScenarios(authPayload) {
 
 export function startSimulation() {
   console.log("PLAY BUTTON CLICKED");
+  let sysCommand = "/home/murali/py/sim_kill_port.py;/home/murali/py/sim_kill_port.py;/home/murali/py/sim_self_start.py;/home/murali/py/sim_stop.py;/home/murali/py/sim_start.py";
 
-  callCommandForExecution("/home/murali/py/sim_kill_port.py;/home/murali/py/sim_kill_port.py;/home/murali/py/sim_self_start.py;/home/murali/py/sim_stop.py;/home/murali/py/sim_start.py");
+  let sysCommand2 = "/home/murali/py/sim_stop.py;/home/murali/py/sim_start.py";
+  //callCommandForExecution(sysCommand);
+  let payload = {remotePath:"/tmp/", remoteIp:"localhost", remotePass:"P@ssc0de", remoteUser:"murali", command:sysCommand2}
 
+  window.socket.emit("start", JSON.stringify(payload), function(response) {
+    console.log("RESPONSE FROM START EVENT =>", response);
+    if(response === "failed") {
+      window.socket.emit("start", JSON.stringify(payload));
+      window.socketStart = false;
+    } else {
+      window.socketStart = true;
+    }
+  });
 
   return {
     type: PLAY_CLICKED

@@ -16,3 +16,5 @@ export const warningsInitialState = {
 	"RRCA": 0,
 	"RLCA": 0
 };
+
+window.socketStart = false;

@@ -2,13 +2,8 @@ import React, { Component } from 'react';
 import MyMapContainer from './map.jsx';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
-<<<<<<< HEAD
 import { fetchAllScenarios, newCarData, receiveSocketData } from '../actions/scenario-actions';
 import { Warnings } from '../components/warnings'
-=======
-import { fetchAllScenarios } from '../actions/scenario-actions';
-import { Warnings } from '../components/warnings';
->>>>>>> d012fd3... Show Warnings  Modal
 import CarPanel from './car-panel';
 import MyModal from '../layouts/Modal.jsx';
 import '../css/home-page.css';

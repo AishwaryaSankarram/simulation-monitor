@@ -53,7 +53,7 @@ class HomePage extends Component {
         <CarPanel cars={this.props.cars} />
         <br />
         <Warnings warnings={this.props.warnings} />
-        <MyMapContainer mapView={this.props.mapView} cars={this.props.cars}/>
+        <MyMapContainer mapView={this.props.mapView} cars={this.props.cars} warningData={this.props.warningData}/>
         {this.props.modalIsOpen && <MyModal warningData={this.props.warningData} modalIsOpen={this.props.modalIsOpen}/>}
       </div>
     );

@@ -60,6 +60,7 @@ export const MyMapComponent = compose(
   {props.mapView.playMode &&
     <div>
       <Vehicles cars={props.cars} />
+      <WarningMarkers warningData={props.warningData} />
     </div>
     }
 

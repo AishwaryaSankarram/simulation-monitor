@@ -4,7 +4,7 @@ const car = "M17.402,0H5.643C2.526,0,0,3.467,0,6.584v34.804c0,3.116,2.526,5.644,
 
 export const carIcon = {
 		path: car,
-		scale: .3,
+		scale: .7,
 		strokeWeight: .5,
     strokeColor: null,
     fillColor: null,

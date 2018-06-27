@@ -1,13 +1,22 @@
 import React, {Component} from 'react';
-import '../css/modal.css';
 
 export default class WarningsTable extends Component{
     render(){
+        let warningData = this.props.warnings.map((w, index) => {
+            return (
+                <tr key={"warning_"+ index}>
+                <td>{w.type}</td>
+                <td>{w.timestamp}</td>
+                <td>{w.lat}</td>
+                <td>{w.lng}</td>
+                <td>{w.speed}</td>
+                <td>{w.evId}</td>
+                <td>{w.rvId}</td>
+            </tr>
+            );
+        });
         return(
             <div className="logs-content">
-                <div className="logs-header">
-                    <h4 className="logs-title">Warning Information</h4>
-                </div>
                 <div id="logsBody" className="logs-body">
                         <table id="warningTable">
                             <thead>
@@ -22,7 +31,7 @@ export default class WarningsTable extends Component{
                                 </tr>
                             </thead>
                             <tbody>
-                               
+                                {warningData}
                             </tbody>
                         </table>
                 </div>

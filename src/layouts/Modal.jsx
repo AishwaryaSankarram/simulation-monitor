@@ -41,7 +41,7 @@ class WarningsModal extends Component {
               <h4 className="modal-title" ref={subtitle => this.subtitle = subtitle}>Warnings</h4>
             </div>
             <div className="modal-body">
-              <WarningsTable warnings={this.props.warnings}/>
+              <WarningsTable warnings={this.props.warningData}/>
             </div>
             <div className="modal-footer">
               <RaisedButton label= "Close" style={style} onClick={this.closeModal} />

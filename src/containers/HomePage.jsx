@@ -3,7 +3,8 @@ import MyMapContainer from './map.jsx';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 import { fetchAllScenarios, newCarData, receiveSocketData } from '../actions/scenario-actions';
-import { Warnings } from '../components/warnings'
+import { Warnings } from '../components/warnings';
+import { warningsInitialState } from "../constants";
 import CarPanel from './car-panel';
 import MyModal from '../layouts/Modal.jsx';
 import '../css/home-page.css';
@@ -19,9 +20,11 @@ class HomePage extends Component {
 
     window.socket.on('console', function(data) {
       let msg = JSON.parse(data);
-      // console.log('RECEIVING : ', data);
+      // console.log('RECEIVING : ', JSON.parse(msg.data));
       self.props.newCarData(JSON.parse(msg.data));
-      self.props.receiveSocketData(JSON.parse(msg.data));
+      let content = JSON.parse(msg.data);
+      if (Object.keys(warningsInitialState).indexOf(content.AwarenessData.Warning.split(" ")[0]) > -1) 
+          self.props.receiveSocketData(JSON.parse(msg.data));
     });
 
     window.socket.on('reset', function(data) {
@@ -47,7 +50,7 @@ class HomePage extends Component {
         <br />
         <Warnings warnings={this.props.warnings} />
         <MyMapContainer mapView={this.props.mapView} cars={this.props.cars}/>
-        <MyModal/>
+        {this.props.modalIsOpen && <MyModal warnings={this.props.warningData} modalIsOpen={this.props.modalIsOpen}/>}
       </div>
     );
   }
@@ -63,7 +66,9 @@ function mapStateToProps(state) {
     user: state.user,
     mapView: state.mapView,
     cars: state.cars,
-    warnings: state.warnings.count
+    modalIsOpen: state.modalIsOpen,
+    warnings: state.warnings.count,
+    warningData: state.warnings.data
 
   }
 }

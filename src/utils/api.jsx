@@ -1,7 +1,7 @@
+import { API_URL } from '../config.js'
 
-
-module.exports = {
-    baseUrl: "http://localhost:8090/",
+export const Api = {
+    baseUrl: API_URL,
     remoteIp: "192.168.1.5",
     remotePath:"/tmp/",
     remotePass:"xxxxxx",

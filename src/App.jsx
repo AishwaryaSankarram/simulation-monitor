@@ -4,8 +4,10 @@ import Header from './layouts/header.js';
 import DisplayContainer from './containers/display-container.js'
 import openSocket from 'socket.io-client';
 
+import { SOCKET_URL } from './config.js'
 
-window.socket = openSocket("http://192.168.1.5:8088", { transports: ['websocket']});
+
+window.socket = openSocket(SOCKET_URL, { transports: ['websocket']});
 
 
 

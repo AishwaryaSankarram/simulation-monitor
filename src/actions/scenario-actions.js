@@ -1,6 +1,7 @@
-import Api from '../utils/api.jsx'
+import {Api} from '../utils/api.jsx'
 import axios from 'axios';
 import { FETCH_ALL_SCENARIOS, PLAY_CLICKED, DATA_RECEIVED } from './constants.js';
+import { START_SCRIPT_COMMAND } from '../config.js'
 
 export async function fetchAllScenarios(authPayload) {
 
@@ -34,9 +35,9 @@ export function startSimulation() {
   console.log("PLAY BUTTON CLICKED");
   // let sysCommand = "/home/murali/py/sim_kill_port.py;/home/murali/py/sim_kill_port.py;/home/murali/py/sim_self_start.py;/home/murali/py/sim_stop.py;/home/murali/py/sim_start.py";
 
-  let sysCommand2 = "/home/murali/py/sim_stop.py;/home/murali/py/sim_start.py";
+
   //callCommandForExecution(sysCommand);
-  let payload = {remotePath:"/tmp/", remoteIp:"localhost", remotePass:"P@ssc0de", remoteUser:"murali", command:sysCommand2}
+  let payload = {remotePath:"/tmp/", remoteIp:"localhost", remotePass:"P@ssc0de", remoteUser:"murali", command: START_SCRIPT_COMMAND};
 
   window.socket.emit("start", JSON.stringify(payload), function(response) {
     console.log("RESPONSE FROM START EVENT =>", response);

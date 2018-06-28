@@ -32,8 +32,19 @@ class PreviewPolylines extends Component {
 
 
   render() {
+    var latLngBounds;
+    let map = this.props.mapObj;
     if (this.props.cars) {
-
+      latLngBounds = new window.google.maps.LatLngBounds();
+      this.props.cars.forEach((car) => {
+            if (car.poly.length > 0) {
+              for (let i = 0; i < car.poly.length; i++) {
+                let e = car.poly[i];
+                  latLngBounds.extend(new window.google.maps.LatLng({ lat: e.lat, lng: e.lng }));
+              }
+            }
+        });
+      map.fitBounds(latLngBounds);
       return (
         this.renderPolylines()
       );

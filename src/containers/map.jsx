@@ -14,28 +14,27 @@ class MyMapContainer extends Component {
 
   render() {
     let cars = this.props.cars;
-    var latLngBounds;
-    if(cars) {
-      latLngBounds = new window.google.maps.LatLngBounds();
-        cars.forEach((car) => {
-          if (this.props.mapView.previewMode) {
-              if (car.poly.length > 0) {
-                for (let i = 0; i < car.poly.length; i++) {
-                  let e = car.poly[i];
-                    latLngBounds.extend(new window.google.maps.LatLng({ lat: e.lat, lng: e.lng }));
-                }
-              }
-          } else {
-            latLngBounds.extend(new window.google.maps.LatLng({ lat: car.latitude, lng: car.longitude }));
-          }
-      });
-    }
+    //var latLngBounds;
+    // if(cars) {
+    //   latLngBounds = new window.google.maps.LatLngBounds();
+    //     cars.forEach((car) => {
+    //       if (this.props.mapView.previewMode) {
+    //           if (car.poly.length > 0) {
+    //             for (let i = 0; i < car.poly.length; i++) {
+    //               let e = car.poly[i];
+    //                 latLngBounds.extend(new window.google.maps.LatLng({ lat: e.lat, lng: e.lng }));
+    //             }
+    //           }
+    //       } else {
+    //         latLngBounds.extend(new window.google.maps.LatLng({ lat: car.latitude, lng: car.longitude }));
+    //       }
+    //   });
+    // }
 
     return(
       <MyMapComponent
         isMarkerShown
         mapView={this.props.mapView}
-        bounds={latLngBounds}
       />
 
     );
@@ -45,8 +44,7 @@ class MyMapContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    mapView: state.mapView,
-    cars: state.cars
+    mapView: state.mapView
   }
 }
 

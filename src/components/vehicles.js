@@ -6,6 +6,15 @@ import { connect } from 'react-redux';
 export class Vehicles extends Component {
 
   render() {
+    var latLngBounds;
+    let map = this.props.mapObj;
+    if(this.props.cars) {
+      latLngBounds = new window.google.maps.LatLngBounds();
+      this.props.cars.forEach( (car) => {
+        latLngBounds.extend(new window.google.maps.LatLng({ lat: car.latitude, lng: car.longitude }));
+      });
+      map.fitBounds(latLngBounds);
+    }
     let carMarkers = this.props.cars.map( (car,index) => {
       let icon = Object.assign({}, carIcon);
       icon.rotation = car.heading;

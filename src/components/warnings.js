@@ -11,8 +11,6 @@ class Warnings extends Component {
 
   render() {
 
-    console.log("this.props.warnings.count.count ->", this.props.warnings.count.count);
-
   return (<div id="warnings" className="clearfix">
     <div className="warrning_label">FCW
       <span className="tooltiptext">Forward Collision Warning</span>:

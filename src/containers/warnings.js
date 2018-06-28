@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
-export default class WarningsTable extends Component{
+class WarningsTable extends Component{
     render(){
         let warningData = this.props.warnings.map((w, index) => {
             return (
@@ -39,3 +40,11 @@ export default class WarningsTable extends Component{
         );     
     }
 }
+
+function mapStateToProps(state){
+    return {
+        warnings: state.warnings.data
+    };
+}
+
+export default connect(mapStateToProps)(WarningsTable);

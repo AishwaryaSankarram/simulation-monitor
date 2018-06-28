@@ -42,7 +42,7 @@ export class ActionButtons extends Component {
   }
 
   handleLogout() {
-    console.log("Comes to logout---------");
+    // console.log("Comes to logout---------");
     localStorage.clear();
     window.location.reload();
   }
@@ -78,8 +78,8 @@ export class ActionButtons extends Component {
               <i className="fa fa-play"></i>
             </button>
           </div>
-        
-          {this.state.dialogVisible && 
+
+          {this.state.dialogVisible &&
             <ConfirmModal title="Log Out" modalIsOpen={this.state.dialogVisible} content={confimation}
             okAction={this.handleLogout.bind(this)} cancelAction={this.closeDialog.bind(this)} />  }
 
@@ -99,7 +99,7 @@ export class ActionButtons extends Component {
           </Popover>
         </div>
       </MuiThemeProvider>
-     
+
     );
   }
 }

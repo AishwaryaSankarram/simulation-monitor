@@ -3,7 +3,7 @@ import MyMapContainer from './map.jsx';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 import { fetchAllScenarios, newCarData, receiveSocketData } from '../actions/scenario-actions';
-import { Warnings } from '../components/warnings';
+import Warnings from '../components/warnings';
 import { warningsInitialState } from "../constants";
 import CarPanel from './car-panel';
 import MyModal from '../layouts/Modal.jsx';
@@ -13,8 +13,8 @@ class HomePage extends Component {
 
   componentDidMount(){
     let self = this;
-    let authPayload = {username: this.props.user.uuid, password: localStorage.getItem("pwd")};
-    if(!this.props.cars) {
+    let authPayload = {username: JSON.parse(localStorage.getItem("loginData")).uuid, password: localStorage.getItem("pwd")};
+    if(this.props.scenarios.length === 0) {
       this.props.fetchAllScenarios(authPayload);
     }
 
@@ -33,10 +33,10 @@ class HomePage extends Component {
     });
 
     window.socket.on('tcpClients', function(data){
-      console.log("RAW DATA =>", data);
-      console.log("DATA.LENGTH", data.length);
+      // console.log("RAW DATA =>", data);
+      // console.log("DATA.LENGTH", data.length);
       if(data.length > 0 && window.socketStart) {
-        console.log("Subscribing to data....");
+        // console.log("Subscribing to data....");
         window.socket.emit("subscribe", "192.168.1.5");
       }
 
@@ -50,11 +50,11 @@ class HomePage extends Component {
         {this.props.overlayShow && <div className="overlay">
           <div className="overlayText">{this.props.overlayText}</div>
           </div>}
-        <CarPanel cars={this.props.cars} />
+        <CarPanel />
         <br />
-        <Warnings warnings={this.props.warnings} />
-        <MyMapContainer mapView={this.props.mapView} cars={this.props.cars} warningData={this.props.warningData}/>
-        {this.props.modalIsOpen && <MyModal warningData={this.props.warningData} modalIsOpen={this.props.modalIsOpen}/>}
+        <Warnings />
+        <MyMapContainer />
+        {this.props.modalIsOpen && <MyModal modalIsOpen={this.props.modalIsOpen}/>}
       </div>
     );
   }
@@ -67,12 +67,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
-    mapView: state.mapView,
-    cars: state.cars,
+    scenarios: state.scenarios,
     modalIsOpen: state.modalIsOpen,
-    warnings: state.warnings.count,
-    warningData: state.warnings.data,
     overlayShow: state.overlay.overlayShow,
     overlayText: state.overlay.overlayText
 

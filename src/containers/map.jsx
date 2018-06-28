@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {MyMapComponent} from '../components/map.jsx';
+import { connect } from 'react-redux';
 
-
-export default class MyMapContainer extends Component {
+class MyMapContainer extends Component {
 
   constructor(props) {
     super(props)
@@ -31,17 +31,23 @@ export default class MyMapContainer extends Component {
       });
     }
 
-    console.log("WARNING DATA => ", this.props.warningData);
-
     return(
       <MyMapComponent
         isMarkerShown
         mapView={this.props.mapView}
-        warningData={this.props.warningData}
         bounds={latLngBounds}
-        cars={this.props.cars}/>
+      />
 
     );
 
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    mapView: state.mapView,
+    cars: state.cars
+  }
+}
+
+export default connect(mapStateToProps)(MyMapContainer)

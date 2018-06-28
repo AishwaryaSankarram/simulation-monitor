@@ -19,7 +19,7 @@ export default function(state = null, action) {
         setToRV.forEach( (car) => {
           car.isEv = false;
         });
-        console.log("NEW STATE ->", newState);
+        // console.log("NEW STATE ->", newState);
         return newState;
 
     case PLAY_CLICKED:

@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import { Polyline } from "react-google-maps";
 import { carIcon } from '../images/car-icon.js';
+import { connect } from 'react-redux';
 
-
-export class PreviewPolylines extends Component {
+class PreviewPolylines extends Component {
 
   constructor(props) {
     super(props);
@@ -12,7 +12,7 @@ export class PreviewPolylines extends Component {
   }
 
   renderPolylines() {
-    console.log("CARS ->", this.props.cars)
+    // console.log("CARS ->", this.props.cars)
     let polylines = this.props.cars.map((car, index) => {
       let icon = Object.assign({}, carIcon);
       icon.strokeColor = car.color || "#000000";
@@ -40,3 +40,11 @@ export class PreviewPolylines extends Component {
  }
 
 }
+
+function mapStateToProps(state) {
+  return {
+    cars: state.cars
+  }
+}
+
+export default connect(mapStateToProps)(PreviewPolylines)

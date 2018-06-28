@@ -11,11 +11,11 @@ import { showWarnings } from '../actions/header-actions';
 class Header extends Component {
 
   menuClick() {
-    console.log("Menu clicked");
+    // console.log("Menu clicked");
   }
 
   startSimulation(event) {
-    console.log("STARTING SIMULATION");
+    // console.log("STARTING SIMULATION");
     this.props.startSimulation();
   }
 
@@ -25,7 +25,7 @@ class Header extends Component {
 
 
  render() {
-   console.log("THIS.PROPS.actionButtons ->", this.props.actionButtons)
+   // console.log("THIS.PROPS.actionButtons ->", this.props.actionButtons)
     return (
         <header>
             <div className="header-part">
@@ -36,11 +36,11 @@ class Header extends Component {
               </div>
               <div className="header-title">Simulation Monitor</div>
               {this.props.user && <div>
-                  <ActionButtons startSimulation={this.startSimulation.bind(this)} userName={this.props.user.name} 
+                  <ActionButtons startSimulation={this.startSimulation.bind(this)} userName={this.props.user.name}
                   actionButtons={this.props.actionButtons} displayWarnings={this.displayWarnings.bind(this)}/>
                   <Dropdown items={this.props.scenarios} />
               </div> }
-                  
+
             </div>
         </header>
     );

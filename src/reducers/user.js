@@ -6,12 +6,12 @@ export default function(state = null, action) {
     case LOGIN_SUCCESS:
       return action.payload.data;
     case LOGIN_FAIL:
-      console.log("LOGIN FAILED");
+      // console.log("LOGIN FAILED");
       return null;
     case RENDER_LOGIN:
       return null;
     default:
-      return state;  
+      return state;
   }
 
 }

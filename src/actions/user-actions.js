@@ -6,7 +6,7 @@ import { LOGIN_SUCCESS, LOGIN_FAIL, RENDER_LOGIN } from './constants.js';
 export async function checkCredentials(payload, source) {
 
 
-  console.log("CHECKING USER CREDENTIALS...")
+  // console.log("CHECKING USER CREDENTIALS...")
 
   let response = await axios({
       method: 'post',

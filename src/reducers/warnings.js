@@ -12,7 +12,8 @@ export default function (state = { count: warningsInitialState, data: [] }, acti
       warningArray.forEach(warning => {
         if(warningsInitialState.hasOwnProperty(warning)){
             warningsHash[warning] = warningsHash[warning] + 1;
-            copiedState.data = copiedState.data.concat({ type: warning, timestamp: new Date().toLocaleString(), 
+            console.log("WARNINGS HASH ->", warningsHash);
+            copiedState.data = copiedState.data.concat({ type: warning, timestamp: new Date().toLocaleString(),
                   lat: evLocation.LatitudeInDeg, lng: evLocation.LongitudeInDeg,
                   evId: evLocation.vehID, rvId: rvLocation.vehID, speed: evLocation.SpeedInMetersPerSec});
         }

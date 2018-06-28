@@ -24,18 +24,18 @@ class Dropdown extends React.Component {
   }
 
   handleChange(event, index, value) {
-    console.log("EVENT =>", event);
+    // console.log("EVENT =>", event);
     this.setState({value: value});
     this.props.fetchCars(value);
   }
 
 
   render() {
-    console.log("MENU ITEMS =>", this.props.items);
+    // console.log("MENU ITEMS =>", this.props.items);
     let menuElements = this.props.items.map( (item, index) => {
       let keyString = "item" + index.toString();
-      console.log("KEYSTRING ", keyString);
-      console.log("item.name ->", item.name)
+      // console.log("KEYSTRING ", keyString);
+      // console.log("item.name ->", item.name)
       return (
           <MenuItem key= {keyString} value={item} primaryText={item.name} />
         );

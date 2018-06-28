@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Polyline, Marker } from 'react-google-maps';
 import { carIcon } from '../images/car-icon';
+import { connect } from 'react-redux';
 
 export class Vehicles extends Component {
 
@@ -11,7 +12,7 @@ export class Vehicles extends Component {
       icon.strokeColor = car.color || "#000000";
       icon.fillColor = car.color || "#000000";
       let pos = {lat: car.latitude, lng: car.longitude};
-      console.log("CAR POSITION", pos);
+      // console.log("CAR POSITION", pos);
       let polyOptions = {strokeColor: car.color || "#000000"};
       let path = [...car.path]
       return(
@@ -26,3 +27,11 @@ export class Vehicles extends Component {
   }
 
 }
+
+function mapStateToProps(state) {
+  return {
+    cars: state.cars
+  }
+}
+
+export default connect(mapStateToProps)(Vehicles);

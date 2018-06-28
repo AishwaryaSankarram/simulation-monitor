@@ -2,7 +2,7 @@
 import { FETCH_CARS, UPDATE_EV } from './constants.js'
 
 export function fetchCars(scenario) {
-  console.log("FETCH CARS");
+  // console.log("FETCH CARS");
 
   return {
     type: FETCH_CARS,

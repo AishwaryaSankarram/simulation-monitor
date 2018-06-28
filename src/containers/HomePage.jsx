@@ -22,9 +22,6 @@ class HomePage extends Component {
       let msg = JSON.parse(data);
       // console.log('RECEIVING : ', JSON.parse(msg.data));
       self.props.newCarData(JSON.parse(msg.data));
-      let content = JSON.parse(msg.data);
-      if (Object.keys(warningsInitialState).indexOf(content.AwarenessData.Warning.split(" ")[0]) > -1)
-          self.props.receiveSocketData(JSON.parse(msg.data));
     });
 
     window.socket.on('reset', function(data) {

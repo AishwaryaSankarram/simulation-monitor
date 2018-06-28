@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MyMapContainer from './map.jsx';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
-import { fetchAllScenarios, newCarData, receiveSocketData } from '../actions/scenario-actions';
+import { fetchAllScenarios, newCarData } from '../actions/scenario-actions';
 import Warnings from '../components/warnings';
 import { warningsInitialState } from "../constants";
 import CarPanel from './car-panel';
@@ -59,7 +59,7 @@ class HomePage extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAllScenarios, newCarData, receiveSocketData }, dispatch);
+  return bindActionCreators({ fetchAllScenarios, newCarData }, dispatch);
 }
 
 function mapStateToProps(state) {

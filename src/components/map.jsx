@@ -27,8 +27,6 @@ export const MyMapComponent = compose(
 
            this.setState({ mapObj: refs.map});
            // console.log("REFS.MAP ->", refs.map);
-           if(routeArray)
-                refs.map.fitBounds(routeArray);
          } });
      },
     componentWillReceiveProps(nextProps) {
@@ -56,10 +54,10 @@ export const MyMapComponent = compose(
     defaultZoom={14}
     defaultCenter={{ lat: 37.41185, lng: -121.99999000000003 }}
   >
-  {props.mapView.previewMode && <PreviewPolylines />}
+  {props.mapView.previewMode && <PreviewPolylines mapObj={props.mapObj} />}
   {props.mapView.playMode &&
     <div>
-      <Vehicles />
+      <Vehicles mapObj={props.mapObj} />
       <WarningMarkers />
     </div>
     }

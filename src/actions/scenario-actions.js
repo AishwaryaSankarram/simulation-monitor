@@ -1,6 +1,6 @@
 import {Api} from '../utils/api.jsx'
 import axios from 'axios';
-import { FETCH_ALL_SCENARIOS, PLAY_CLICKED, DATA_RECEIVED } from './constants.js';
+import { FETCH_ALL_SCENARIOS, PLAY_CLICKED, CAR_DATA } from './constants.js';
 import { START_SCRIPT_COMMAND } from '../config.js'
 
 export async function fetchAllScenarios(authPayload) {
@@ -21,13 +21,6 @@ export async function fetchAllScenarios(authPayload) {
   return {
     type: FETCH_ALL_SCENARIOS,
     payload: data
-  }
-}
-
-export function receiveSocketData(data) {
-  return {
-    type: DATA_RECEIVED,
-    content: data
   }
 }
 
@@ -57,7 +50,7 @@ export function startSimulation() {
 
 export function newCarData(data) {
   return {
-    type: "CAR_DATA",
+    type: CAR_DATA,
     payload: data
   }
 }

@@ -1,4 +1,4 @@
-import { PLAY_CLICKED } from '../actions/constants'
+import { PLAY_CLICKED, CAR_DATA } from '../actions/constants'
 
 export default function(state={overlayShow: false, overlayText:""}, action) {
 
@@ -7,7 +7,7 @@ export default function(state={overlayShow: false, overlayText:""}, action) {
     case PLAY_CLICKED:
       return {overlayShow: true, overlayText: "Simulation is Starting Up. Please Wait..."};
 
-    case "CAR_DATA":
+    case CAR_DATA:
       return {overlayShow: false, overlayText: ""};
 
     default:

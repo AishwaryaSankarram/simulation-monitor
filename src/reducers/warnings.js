@@ -1,15 +1,16 @@
 import { warningsInitialState } from '../constants.js'
-import { DATA_RECEIVED } from '../actions/constants.js';
+import { CAR_DATA } from '../actions/constants.js';
 
 export default function (state = { count: warningsInitialState, data: [] }, action) {
   switch(action.type) {
-    case "CAR_DATA":
-      let warningsHash = Object.assign(copiedState.count, {});
+    case CAR_DATA:
       let copiedState = Object.assign(state, {});
-      if (Object.keys(warningsInitialState).indexOf(content.AwarenessData.Warning.split(" ")[0]) > -1){
-          let warningArray = action.content["AwarenessData"].Warning.split(" ");
-          let evLocation = action.content["EVLocation"];
-          let rvLocation = action.content["RVLocation"];
+      let warningsHash = Object.assign(copiedState.count, {});
+      let warningArray = action.payload["AwarenessData"].Warning.split(" ");
+      if (Object.keys(warningsInitialState).indexOf(warningArray[0]) > -1){
+
+          let evLocation = action.payload["EVLocation"];
+          let rvLocation = action.payload["RVLocation"];
           warningArray.forEach(warning => {
             if(warningsInitialState.hasOwnProperty(warning)){
                 warningsHash[warning] = warningsHash[warning] + 1;

@@ -1,4 +1,4 @@
-import { FETCH_CARS, UPDATE_EV, PLAY_CLICKED } from '../actions/constants'
+import { FETCH_CARS, UPDATE_EV, PLAY_CLICKED, CAR_DATA } from '../actions/constants'
 
 export default function(state = null, action) {
   let newState;
@@ -30,7 +30,7 @@ export default function(state = null, action) {
         newState[1].path = [];
         return newState;
 
-    case "CAR_DATA":
+    case CAR_DATA:
         newState = [...state];
         let evCar = action.payload.EVLocation;
 

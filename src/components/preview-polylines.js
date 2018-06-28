@@ -33,6 +33,7 @@ class PreviewPolylines extends Component {
 
   render() {
     if (this.props.cars) {
+
       return (
         this.renderPolylines()
       );

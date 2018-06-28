@@ -2,7 +2,7 @@ import { FETCH_CARS, UPDATE_EV, PLAY_CLICKED, CAR_DATA } from '../actions/consta
 
 export default function(state = null, action) {
   let newState;
-
+  console.log("CARS ->", action.payload);
   switch(action.type) {
     case FETCH_CARS:
       return action.payload.cars;
@@ -24,8 +24,8 @@ export default function(state = null, action) {
 
     case PLAY_CLICKED:
         newState = [...state];
-        newState[0].carId = 1000;
-        newState[1].carId = 2000;
+        newState[0].carId = 1234;
+        newState[1].carId = 4321;
         newState[0].path = [];
         newState[1].path = [];
         return newState;

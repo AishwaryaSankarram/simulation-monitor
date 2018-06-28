@@ -16,7 +16,7 @@ class Header extends Component {
 
   startSimulation(event) {
     // console.log("STARTING SIMULATION");
-    this.props.startSimulation();
+    this.props.startSimulation(this.props.cars);
   }
 
   displayWarnings(){
@@ -51,6 +51,7 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     scenarios: state.scenarios,
+    cars: state.cars,
     actionButtons: state.actionButtons,
     warningsShown: state.modalIsOpen
   }

@@ -30,10 +30,10 @@ class HomePage extends Component {
     });
 
     window.socket.on('tcpClients', function(data){
-      // console.log("RAW DATA =>", data);
-      // console.log("DATA.LENGTH", data.length);
+      console.log("RAW DATA =>", data);
+      console.log("DATA.LENGTH", data.length);
       if(data.length > 0 && window.socketStart) {
-        // console.log("Subscribing to data....");
+        console.log("Subscribing to data....");
         window.socket.emit("subscribe", "192.168.1.5");
       }
 

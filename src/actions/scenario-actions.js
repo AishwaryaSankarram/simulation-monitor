@@ -24,16 +24,41 @@ export async function fetchAllScenarios(authPayload) {
   }
 }
 
-export function startSimulation() {
+export function startSimulation(cars) {
   // console.log("PLAY BUTTON CLICKED");
   // let sysCommand = "/home/murali/py/sim_kill_port.py;/home/murali/py/sim_kill_port.py;/home/murali/py/sim_self_start.py;/home/murali/py/sim_stop.py;/home/murali/py/sim_start.py";
 
 
   //callCommandForExecution(sysCommand);
-  let payload = {remotePath:"/tmp/", remoteIp:"localhost", remotePass:"P@ssc0de", remoteUser:"murali", command: START_SCRIPT_COMMAND};
+  // let payload = {remotePath:"/tmp/", remoteIp:"localhost", remotePass:"P@ssc0de", remoteUser:"murali", command: START_SCRIPT_COMMAND};
+  let objToSend = {}
+  let payload = [];
+  //
+  // cars.forEach( (car,index) => {
+  //   let gpsFileName = ((index + 1)*1000).toString()
+  //   let carPayload = {"gpsFileName": car.geoFileName, "vehId": (index + 1)*1000, isEv: car.isEv}
+  //   payload.push(carPayload);
+  // });
 
-  window.socket.emit("start", JSON.stringify(payload), function(response) {
-    // console.log("RESPONSE FROM START EVENT =>", response);
+  cars[0].gpsFileName = "1234gps_sim.json";
+  cars[0].vehId = "1234";
+  cars[0].isEv = false;
+
+  cars[1].gpsFileName = "4321gps_sim.json";
+  cars[1].vehId = "4321";
+  cars[1].isEv = true;
+
+  cars.forEach( (car) => {
+    let carPayload = {"gpsFileName": car.gpsFileName, "vehId": car.vehId, "isEv": car.isEv };
+    payload.push(carPayload);
+  });
+
+  objToSend.start = payload;
+  console.log("OBJTOSEND ->", objToSend);
+
+
+  window.socket.emit("start", JSON.stringify(objToSend), function(response) {
+    console.log("RESPONSE FROM START EVENT =>", response);
     if(response === "failed") {
       window.socket.emit("start", JSON.stringify(payload));
       window.socketStart = false;

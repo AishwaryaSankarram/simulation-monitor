@@ -26,6 +26,7 @@ class Header extends Component {
 
  render() {
    // console.log("THIS.PROPS.actionButtons ->", this.props.actionButtons)
+   console.log("CARS ->", this.props.cars);
     return (
         <header>
             <div className="header-part">

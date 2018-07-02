@@ -40,16 +40,16 @@ export function startSimulation(cars) {
   //   payload.push(carPayload);
   // });
 
-  cars[0].gpsFileName = "1234gps_sim.json";
-  cars[0].vehId = "1234";
-  cars[0].isEv = false;
-
-  cars[1].gpsFileName = "4321gps_sim.json";
-  cars[1].vehId = "4321";
-  cars[1].isEv = true;
+  // cars[0].gpsFileName = "1234gps_sim.json";
+  // cars[0].vehId = "1234";
+  // cars[0].isEv = false;
+  //
+  // cars[1].gpsFileName = "4321gps_sim.json";
+  // cars[1].vehId = "4321";
+  // cars[1].isEv = true;
 
   cars.forEach( (car) => {
-    let carPayload = {"gpsFileName": car.gpsFileName, "vehId": car.vehId, "isEv": car.isEv };
+    let carPayload = {"gpsFileName": car.geoFileName, "vehId": car.vehId, "isEv": car.useAsEv };
     payload.push(carPayload);
   });
 

@@ -9,7 +9,7 @@ export default class CarCard extends Component {
     let evClassName;
     let evDisplayText, title;
 
-    if(this.props.car.isEv) {
+    if(this.props.car.useAsEv) {
       evClassName = "load_ev_icon";
       title="This is your EV";
       evDisplayText = "EV";

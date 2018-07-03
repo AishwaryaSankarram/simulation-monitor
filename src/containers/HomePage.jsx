@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { fetchAllScenarios, newCarData } from '../actions/scenario-actions';
 import Warnings from '../components/warnings';
 import { warningsInitialState } from "../constants";
+import { SUBSCRIPTION_URL } from '../config'
 import CarPanel from './car-panel';
 import MyModal from '../layouts/Modal.jsx';
 import '../css/home-page.css';
@@ -18,11 +19,7 @@ class HomePage extends Component {
       this.props.fetchAllScenarios(authPayload);
     }
 
-    window.socket.on('console', function(data) {
-      let msg = JSON.parse(data);
-      // console.log('RECEIVING : ', JSON.parse(msg.data));
-      self.props.newCarData(JSON.parse(msg.data));
-    });
+
 
     window.socket.on('reset', function(data) {
     	data = JSON.parse(data);
@@ -34,7 +31,12 @@ class HomePage extends Component {
       console.log("DATA.LENGTH", data.length);
       if(data.length > 0 && window.socketStart) {
         console.log("Subscribing to data....");
-        window.socket.emit("subscribe", "192.168.1.5");
+        window.socket.emit("subscribe", SUBSCRIPTION_URL);
+        window.socket.on('console', function(data) {
+          let msg = JSON.parse(data);
+          // console.log('RECEIVING : ', JSON.parse(msg.data));
+          self.props.newCarData(JSON.parse(msg.data));
+        });
       }
 
     })

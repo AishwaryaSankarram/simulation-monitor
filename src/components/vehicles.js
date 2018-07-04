@@ -6,22 +6,27 @@ import { connect } from 'react-redux';
 export class Vehicles extends Component {
 
   render() {
-    var latLngBounds;
+    /* var latLngBounds; // It is up to the user to zoom and view wherever he/she wants to - 04/07/2018
     let map = this.props.mapObj;
     if(this.props.cars) {
       latLngBounds = new window.google.maps.LatLngBounds();
       this.props.cars.forEach( (car) => {
-        latLngBounds.extend(new window.google.maps.LatLng({ lat: car.latitude, lng: car.longitude }));
+        if(car.useAsEv){
+          let latLng = new window.google.maps.LatLng({ lat: parseFloat(car.latitude), lng: parseFloat(car.longitude) });
+          // latLngBounds.extend(latLng);
+          if (!map.getBounds().contains(latLng)) {
+            map.panTo(latLng);  
+          }
+        }
       });
-      map.fitBounds(latLngBounds);
-    }
+    } */
     let carMarkers = this.props.cars.map( (car,index) => {
       let icon = Object.assign({}, carIcon);
       icon.rotation = car.heading;
       icon.strokeColor = car.color || "#000000";
       icon.fillColor = car.color || "#000000";
-      let pos = {lat: car.latitude, lng: car.longitude};
-      // console.log("CAR POSITION", pos);
+      let pos = {lat: parseFloat(car.latitude), lng: parseFloat(car.longitude)};
+      // console.warn("CAR PATH", car.path);
       let polyOptions = {strokeColor: car.color || "#000000"};
       let path = [...car.path]
       return(

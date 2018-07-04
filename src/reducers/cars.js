@@ -38,8 +38,8 @@ export default function(state = null, action) {
 
         let newStateRV = newState.filter( (car) => car.vehId.toString() === rvCar.vehID)[0];
 
-        console.log("NEW STATE EV ->", newStateEV);
-        console.log("NEW STATE RV ->", newStateRV);
+        // console.log("NEW STATE EV ->", newStateEV);
+        // console.log("NEW STATE RV ->", newStateRV);
 
 
         if(newStateEV) {

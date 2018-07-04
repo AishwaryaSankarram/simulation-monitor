@@ -40,7 +40,7 @@ class HomePage extends Component {
         window.socket.emit("subscribe", SUBSCRIPTION_URL);
         window.socket.on('console', function(data) {
           let msg = JSON.parse(data);
-          console.log('RECEIVING : ', JSON.parse(msg.data));
+          // console.log('RECEIVING : ', JSON.parse(msg.data));
           self.props.newCarData(JSON.parse(msg.data));
           let content = JSON.parse(msg.data);
           let evLocation = content["EVLocation"];

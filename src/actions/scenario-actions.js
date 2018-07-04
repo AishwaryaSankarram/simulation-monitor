@@ -12,9 +12,9 @@ export async function fetchAllScenarios(authPayload) {
   let data;
   if(response.status === 200) {
     // console.log("RESPONSE STATUS 200 =>", response);
-    data = response.data
+    data = response.data.filter(s => s.cars.length > 0);
   } else {
-    data = []
+    data = [];
   }
 
 

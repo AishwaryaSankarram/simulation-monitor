@@ -15,7 +15,7 @@
 .carPanel table tr td:nth-child(2){
     color: #d000ff;
     font-size: 13px;
-    padding-left: 5px;
+    padding-left: 3px;
 } 
 
 .carPanel table .car-label{

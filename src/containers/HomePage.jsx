@@ -4,13 +4,20 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 import { fetchAllScenarios, newCarData } from '../actions/scenario-actions';
 import Warnings from '../components/warnings';
-import { warningsInitialState } from "../constants";
-import { SUBSCRIPTION_URL } from '../config'
+import { SUBSCRIPTION_URL } from '../config';
 import CarPanel from './car-panel';
 import MyModal from '../layouts/Modal.jsx';
 import '../css/home-page.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { warningsInitialState } from '../constants.js'
 
 class HomePage extends Component {
+
+  constructor(props){
+    super(props);
+    this.toastsObj= {};
+  }
 
   componentDidMount(){
     let self = this;
@@ -18,7 +25,6 @@ class HomePage extends Component {
     if(this.props.scenarios.length === 0) {
       this.props.fetchAllScenarios(authPayload);
     }
-
 
 
     window.socket.on('reset', function(data) {
@@ -34,8 +40,35 @@ class HomePage extends Component {
         window.socket.emit("subscribe", SUBSCRIPTION_URL);
         window.socket.on('console', function(data) {
           let msg = JSON.parse(data);
-          // console.log('RECEIVING : ', JSON.parse(msg.data));
+          console.log('RECEIVING : ', JSON.parse(msg.data));
           self.props.newCarData(JSON.parse(msg.data));
+          let content = JSON.parse(msg.data);
+          let evLocation = content["EVLocation"];
+          let rvLocation = content["RVLocation"];
+
+          let warningArray = content["AwarenessData"].Warning.split(" ");
+          
+          if (Object.keys(warningsInitialState).indexOf(warningArray[0]) > -1) {
+            warningArray.forEach(warning => {
+              if(warning.length > 0){
+                let toastKey = warning + evLocation.vehID + rvLocation.vehID;
+                if (self.toastsObj.hasOwnProperty(toastKey)){
+                  self.toastsObj[toastKey].count = self.toastsObj[toastKey].count + 1;
+                  let toastData = self.toastsObj[toastKey].data;
+                  toast.update(toastData, {
+                    render: 'Warning ' + warning + ' received  between ' + evLocation.vehID + ' and ' + rvLocation.vehID + '(' + self.toastsObj[toastKey].count + ')',
+                    autoClose: 10000
+                  })  
+                }else{
+                  let toastData = toast.warning('Warning ' + warning + ' received between ' + evLocation.vehID + ' and ' + rvLocation.vehID, {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 5000
+                  });
+                  self.toastsObj[toastKey] = {count: 1, data: toastData};
+                }
+              }
+            });
+          }
         });
       }
 
@@ -52,6 +85,7 @@ class HomePage extends Component {
         <CarPanel />
         <br />
         <Warnings />
+        <ToastContainer style={{ fontSize: "12px", marginLeft: "5%" }} />
         <MyMapContainer />
         {this.props.modalIsOpen && <MyModal modalIsOpen={this.props.modalIsOpen}/>}
       </div>
@@ -61,7 +95,7 @@ class HomePage extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAllScenarios, newCarData }, dispatch);
+  return bindActionCreators({ fetchAllScenarios, newCarData}, dispatch);
 }
 
 function mapStateToProps(state) {
@@ -70,7 +104,6 @@ function mapStateToProps(state) {
     modalIsOpen: state.modalIsOpen,
     overlayShow: state.overlay.overlayShow,
     overlayText: state.overlay.overlayText
-
   }
 }
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 class WarningsTable extends Component{
     render(){
+        let self = this;
         let warningData = this.props.warnings.map((w, index) => {
             return (
                 <tr key={"warning_"+ index}>
@@ -11,8 +12,8 @@ class WarningsTable extends Component{
                 <td>{w.lat}</td>
                 <td>{w.lng}</td>
                 <td>{w.speed}</td>
-                <td>{w.evId}</td>
-                <td>{w.rvId}</td>
+                <td>{self.props.carMap[w.evId]}</td>
+                <td>{self.props.carMap[w.rvId]}</td>
             </tr>
             );
         });
@@ -42,8 +43,14 @@ class WarningsTable extends Component{
 }
 
 function mapStateToProps(state){
+    let cars = state.cars;
+    let carHash = {};
+    cars.forEach(car => {
+        carHash[car.vehId] = car.carLabel;
+    });
     return {
-        warnings: state.warnings.data
+        warnings: state.warnings.data,
+        carMap: carHash
     };
 }
 

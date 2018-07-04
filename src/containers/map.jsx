@@ -13,8 +13,8 @@ class MyMapContainer extends Component {
 
 
   render() {
-    let cars = this.props.cars;
-    //var latLngBounds;
+    // let cars = this.props.cars;
+    // var latLngBounds;
     // if(cars) {
     //   latLngBounds = new window.google.maps.LatLngBounds();
     //     cars.forEach((car) => {

@@ -1,3 +1,27 @@
+.carPanel table tr td{
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.carPanel table tr td{
+    padding-bottom: 5px;
+}
+
+.carPanel table tr td:nth-child(1){
+    text-transform: uppercase;
+} 
+
+.carPanel table tr td:nth-child(2){
+    color: #d000ff;
+    font-size: 13px;
+    padding-left: 5px;
+} 
+
+.carPanel table .car-label{
+    color: #333 !important;
+}
+
 .state_name{
     font-size: 16px;
 }

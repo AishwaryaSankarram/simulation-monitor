@@ -5,10 +5,6 @@ import { connect } from 'react-redux'
 
 class Warnings extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
 
   return (<div id="warnings" className="clearfix">

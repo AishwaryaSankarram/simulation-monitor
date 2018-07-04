@@ -21,34 +21,31 @@ export default class CarCard extends Component {
 
     return (
         <li style={{border: "2px solid " + this.props.color}} >
-          <div >
-            <div className="state_name">
-              <div className="stats_label">{"Name: "}</div>
-              <div className="stats_desc">{this.props.name}</div>
-            </div><br />
-            <div className="lat_long">
-              <div className="stats_label">{"(lat,lng): "}</div>
-              <div className="stats_desc">
-              {"("}<div className="lat_point">{this.props.latitude}
-              </div>{", "}
-              <div className="lat_point">{this.props.longitude}</div>{")"}
-              </div>
-            </div><br />
-            <div className="time_dest">
-              <div className="stats_label">{"Time to Destination: "}</div>
-              <div className="stats_desc">
-                <div>{this.props.timeToDest + " sec"}</div>
-              </div>
-            </div><br />
-            <div className="speed">
-              <div className="stats_label">{"Speed: "}
-              </div>
-              <div className="stats_desc">
-                <div>{this.props.speed}</div>
-              </div>
-            </div>
-          </div>
-          <div className={evClassName} title={title} onClick={()=>this.props.updateEV(this.props.car)}>{evDisplayText}</div>
+        <table>
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td className="car-label">{this.props.name}</td>
+            </tr>
+            <tr>
+              <td>Latitude</td>
+              <td>{this.props.latitude}</td>
+            </tr>
+            <tr>
+              <td>Longitude</td>
+              <td>{this.props.longitude}</td>
+            </tr>
+            <tr>
+              <td>Time to Destination</td>
+              <td>{this.props.timeToDest + " sec"}</td>
+            </tr>
+            <tr>
+              <td>Speed</td>
+              <td>{this.props.speed + ' mph' }</td>
+            </tr>
+          </tbody>
+        </table>
+        <div className={evClassName} title={title} onClick={()=>this.props.updateEV(this.props.car)}>{evDisplayText}</div>
         </li>
     )
   }

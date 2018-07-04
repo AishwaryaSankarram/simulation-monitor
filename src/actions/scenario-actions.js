@@ -1,7 +1,7 @@
 import {Api} from '../utils/api.jsx'
 import axios from 'axios';
 import { FETCH_ALL_SCENARIOS, PLAY_CLICKED, CAR_DATA } from './constants.js';
-import { START_SCRIPT_COMMAND } from '../config.js'
+// import { START_SCRIPT_COMMAND } from '../config.js'
 
 export async function fetchAllScenarios(authPayload) {
 

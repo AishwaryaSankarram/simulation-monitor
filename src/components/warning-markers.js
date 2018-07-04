@@ -1,5 +1,5 @@
-import { Polyline, Marker } from 'react-google-maps';
-import { warningIcon } from '../images/warning-icon';
+import { Marker } from 'react-google-maps';
+// import { warningIcon } from '../images/warning-icon';
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 

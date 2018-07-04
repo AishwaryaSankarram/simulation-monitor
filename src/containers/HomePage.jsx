@@ -56,11 +56,11 @@ class HomePage extends Component {
                   self.toastsObj[toastKey].count = self.toastsObj[toastKey].count + 1;
                   let toastData = self.toastsObj[toastKey].data;
                   toast.update(toastData, {
-                    render: 'Warning ' + warning + ' received  between ' + evLocation.vehID + ' and ' + rvLocation.vehID + '(' + self.toastsObj[toastKey].count + ')',
+                    render: 'Warning ' + warning + ' received  between ' + self.props.carMap[evLocation.vehID] + ' and ' + self.props.carMap[rvLocation.vehID] + ' (' + self.toastsObj[toastKey].count + ')',
                     autoClose: 10000
                   })  
                 }else{
-                  let toastData = toast.warning('Warning ' + warning + ' received between ' + evLocation.vehID + ' and ' + rvLocation.vehID, {
+                  let toastData = toast.error('Warning ' + warning + ' received between ' + self.props.carMap[evLocation.vehID] + ' and ' + self.props.carMap[rvLocation.vehID], {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 5000
                   });
@@ -85,7 +85,7 @@ class HomePage extends Component {
         <CarPanel />
         <br />
         <Warnings />
-        <ToastContainer style={{ fontSize: "12px", marginLeft: "5%" }} />
+        <ToastContainer style={{ fontSize: "12px", marginLeft: "5%", marginTop: "3%" }} />
         <MyMapContainer />
         {this.props.modalIsOpen && <MyModal modalIsOpen={this.props.modalIsOpen}/>}
       </div>
@@ -99,9 +99,17 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
+  let cars = state.cars;
+  let carHash = {};
+  if(cars && cars.length > 0){
+    cars.forEach(car => {
+      carHash[car.vehId] = car.carLabel;
+    });
+  }
   return {
     scenarios: state.scenarios,
     modalIsOpen: state.modalIsOpen,
+    carMap: carHash,
     overlayShow: state.overlay.overlayShow,
     overlayText: state.overlay.overlayText
   }

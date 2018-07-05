@@ -29,14 +29,14 @@ class HomePage extends Component {
 
     window.socket.on('reset', function(data) {
     	data = JSON.parse(data);
-		  console.log('Reset data : ', data);
+		  // console.log('Reset data : ', data);
     });
 
     window.socket.on('tcpClients', function(data){
-      console.log("RAW DATA =>", data);
-      console.log("DATA.LENGTH", data.length);
+      // console.log("RAW DATA =>", data);
+      // console.log("DATA.LENGTH", data.length);
       if(data.length > 0 && window.socketStart) {
-        console.log("Subscribing to data....");
+        // console.log("Subscribing to data....");
         window.socket.emit("subscribe", SUBSCRIPTION_URL);
         window.socket.on('console', function(data) {
           let msg = JSON.parse(data);
@@ -57,7 +57,7 @@ class HomePage extends Component {
                   let toastData = self.toastsObj[toastKey].data;
                   toast.update(toastData, {
                     render: 'Warning ' + warning + ' received  between ' + self.props.carMap[evLocation.vehID] + ' and ' + self.props.carMap[rvLocation.vehID] + ' (' + self.toastsObj[toastKey].count + ')',
-                    autoClose: 10000
+                    autoClose: 5000
                   })  
                 }else{
                   let toastData = toast.error('Warning ' + warning + ' received between ' + self.props.carMap[evLocation.vehID] + ' and ' + self.props.carMap[rvLocation.vehID], {
@@ -85,7 +85,7 @@ class HomePage extends Component {
         <CarPanel />
         <br />
         <Warnings />
-        <ToastContainer style={{ fontSize: "12px", marginLeft: "5%", marginTop: "3%" }} />
+        <ToastContainer style={{ fontSize: "12px", marginLeft: "5%", marginTop: "3%" }} className="warning-toast" />
         <MyMapContainer />
         {this.props.modalIsOpen && <MyModal modalIsOpen={this.props.modalIsOpen}/>}
       </div>

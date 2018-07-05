@@ -6,20 +6,24 @@ import { connect } from 'react-redux';
 export class Vehicles extends Component {
 
   render() {
-    /* var latLngBounds; // It is up to the user to zoom and view wherever he/she wants to - 04/07/2018
+     // It is up to the user to zoom and view wherever he/she wants to - 04/07/2018
+     //Revert to fitBounds - 05/07/2018
+    var latLngBounds;
     let map = this.props.mapObj;
     if(this.props.cars) {
       latLngBounds = new window.google.maps.LatLngBounds();
       this.props.cars.forEach( (car) => {
-        if(car.useAsEv){
+        // if(car.useAsEv){
           let latLng = new window.google.maps.LatLng({ lat: parseFloat(car.latitude), lng: parseFloat(car.longitude) });
-          // latLngBounds.extend(latLng);
-          if (!map.getBounds().contains(latLng)) {
+          latLngBounds.extend(latLng);
+/*           if (!map.getBounds().contains(latLng)) {
             map.panTo(latLng);  
           }
-        }
+ */        
+        // }
       });
-    } */
+      map.fitBounds(latLngBounds);
+    }
     let carMarkers = this.props.cars.map( (car,index) => {
       let icon = Object.assign({}, carIcon);
       icon.rotation = car.heading;

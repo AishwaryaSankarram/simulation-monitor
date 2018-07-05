@@ -4,8 +4,8 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
-import { fetchCars } from '../actions/car-actions'
-
+import { fetchCars } from '../actions/car-actions';
+import { stopSimulation } from '../actions/scenario-actions';
 
 
 const styles = {
@@ -27,6 +27,7 @@ class Dropdown extends React.Component {
     // console.log("EVENT =>", event);
     this.setState({value: value});
     this.props.fetchCars(value);
+    this.props.stopSimulation();
   }
 
 
@@ -45,7 +46,7 @@ class Dropdown extends React.Component {
     return(
       <div className="pull-right">
         <MuiThemeProvider >
-          <SelectField disabled={window.socketStart}
+          <SelectField
           value={this.state.value} onChange={this.handleChange} style={styles.customWidth}>
               {this.state.value === 1 && <MenuItem value={1} primaryText={"Select A Scenario"} disabled={true}/>}
             {menuElements}
@@ -58,7 +59,7 @@ class Dropdown extends React.Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchCars }, dispatch);
+  return bindActionCreators({ fetchCars, stopSimulation }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(Dropdown);

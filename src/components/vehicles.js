@@ -28,7 +28,7 @@ export class Vehicles extends Component {
       let pos = {lat: parseFloat(car.latitude), lng: parseFloat(car.longitude)};
       // console.warn("CAR PATH", car.path);
       let polyOptions = {strokeColor: car.color || "#000000"};
-      let path = [...car.path]
+      let path = car.path ? [...car.path] : [];
       return(
         <div key={"car_veh_" + index}>
           <Polyline key={"poly_veh_" + index} path={path} options={polyOptions} />

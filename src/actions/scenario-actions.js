@@ -25,8 +25,13 @@ export async function fetchAllScenarios(authPayload) {
 }
 
 export function stopSimulation() {
+  window.socketStart = false;
   window.socket.emit("stop", JSON.stringify({ command: "stop" }), function (response) {
-    window.socketStart = false;
+    if (response === "failed") {
+      window.socketStart = true;
+    } else {
+      window.socketStart = false;
+    }
   });
   return {
     type: STOP_CLICKED
@@ -108,7 +113,7 @@ export function startSimulation(cars) {
 
 }
 
-export function newCarData(data) {
+export function newCarData(data) { 
   return {
     type: CAR_DATA,
     payload: data

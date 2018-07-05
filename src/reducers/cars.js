@@ -1,10 +1,15 @@
-import { FETCH_CARS, UPDATE_EV, PLAY_CLICKED, CAR_DATA } from '../actions/constants'
+import { FETCH_CARS, UPDATE_EV, PLAY_CLICKED, CAR_DATA, REPLAY_CLICKED } from '../actions/constants'
 
 export default function(state = null, action) {
   let newState;
   switch(action.type) {
     case FETCH_CARS:
-      return action.payload.cars;
+      let carResponse = action.payload.cars;
+      carResponse.forEach( (car) => {
+        car.initialLat = car.latitude;
+        car.initialLng = car.longitude;
+      });
+      return carResponse;
 
     case UPDATE_EV:
         newState = [...state];
@@ -21,9 +26,13 @@ export default function(state = null, action) {
         // console.log("NEW STATE ->", newState);
         return newState;
 
+    case REPLAY_CLICKED:    
     case PLAY_CLICKED:
+        console.log("Replay/play Clicked----------");
         newState = [...state];
         newState.forEach( (car) => {
+          car.latitude = car.initialLat;
+          car.longitude = car.initialLng;
           car.path = [];
         });
         return newState;

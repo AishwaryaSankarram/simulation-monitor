@@ -1,6 +1,6 @@
-import {Api} from '../utils/api.jsx'
+import { Api } from '../utils/api.jsx';
 import axios from 'axios';
-import { FETCH_ALL_SCENARIOS, PLAY_CLICKED, CAR_DATA } from './constants.js';
+import { FETCH_ALL_SCENARIOS, PLAY_CLICKED, CAR_DATA, STOP_CLICKED, REPLAY_CLICKED } from './constants.js';
 // import { START_SCRIPT_COMMAND } from '../config.js'
 
 export async function fetchAllScenarios(authPayload) {
@@ -8,9 +8,9 @@ export async function fetchAllScenarios(authPayload) {
   // console.log("FETCH ALL SCENARIOS ACTION CALLED");
 
   const baseUrl = Api.baseUrl + "scenario/getAllScenarios";
-  let response =  await axios.get(baseUrl, {auth: authPayload});
+  let response = await axios.get(baseUrl, { auth: authPayload });
   let data;
-  if(response.status === 200) {
+  if (response.status === 200) {
     // console.log("RESPONSE STATUS 200 =>", response);
     data = response.data.filter(s => s.cars.length > 0);
   } else {
@@ -23,6 +23,41 @@ export async function fetchAllScenarios(authPayload) {
     payload: data
   }
 }
+
+export function stopSimulation() {
+  window.socket.emit("stop", JSON.stringify({ command: "stop" }), function (response) {
+    window.socketStart = false;
+  });
+  return {
+    type: STOP_CLICKED
+  }
+}
+
+export function replaySimulation(cars) {
+  let objToSend = {}
+  let payload = [];
+  cars.forEach((car) => {
+    let carPayload = { "gpsFileName": car.geoFileName, "vehId": car.vehId, "isEv": car.useAsEv };
+    payload.push(carPayload);
+  });
+  objToSend.start = payload;
+  window.socket.emit("stop", JSON.stringify({ command: "stop" }), function (r) {
+    window.socketStart = false;
+    window.socket.emit("start", JSON.stringify(objToSend), function (response) {
+      if (response === "failed") {
+        window.socket.emit("start", JSON.stringify(payload));
+        window.socketStart = false;
+      } else {
+        window.socketStart = true;
+      }
+    });
+  });
+
+  return {
+    type: REPLAY_CLICKED
+  }
+}
+
 
 export function startSimulation(cars) {
   // console.log("PLAY BUTTON CLICKED");
@@ -48,18 +83,18 @@ export function startSimulation(cars) {
   // cars[1].vehId = "4321";
   // cars[1].isEv = true;
 
-  cars.forEach( (car) => {
-    let carPayload = {"gpsFileName": car.geoFileName, "vehId": car.vehId, "isEv": car.useAsEv };
+  cars.forEach((car) => {
+    let carPayload = { "gpsFileName": car.geoFileName, "vehId": car.vehId, "isEv": car.useAsEv };
     payload.push(carPayload);
   });
 
   objToSend.start = payload;
-  console.log("OBJTOSEND ->", objToSend);
+  // console.log("OBJTOSEND ->", objToSend);
 
 
-  window.socket.emit("start", JSON.stringify(objToSend), function(response) {
-    console.log("RESPONSE FROM START EVENT =>", response);
-    if(response === "failed") {
+  window.socket.emit("start", JSON.stringify(objToSend), function (response) {
+    // console.log("RESPONSE FROM START EVENT =>", response);
+    if (response === "failed") {
       window.socket.emit("start", JSON.stringify(payload));
       window.socketStart = false;
     } else {

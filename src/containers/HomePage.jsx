@@ -38,6 +38,7 @@ class HomePage extends Component {
       if(data.length > 0 && window.socketStart) {
         // console.log("Subscribing to data....");
         window.socket.emit("subscribe", SUBSCRIPTION_URL);
+        self.toastsObj={};
         window.socket.on('console', function(data) {
           let msg = JSON.parse(data);
           // console.log('RECEIVING : ', JSON.parse(msg.data));

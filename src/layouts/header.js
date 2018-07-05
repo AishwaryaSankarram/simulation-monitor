@@ -5,7 +5,7 @@ import Dropdown from '../containers/dropdown.jsx';
 import { ActionButtons } from '../containers/action-buttons'
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
-import { startSimulation } from '../actions/scenario-actions';
+import { startSimulation, stopSimulation, replaySimulation } from '../actions/scenario-actions';
 import { showWarnings } from '../actions/header-actions';
 
 class Header extends Component {
@@ -15,8 +15,19 @@ class Header extends Component {
   }
 
   startSimulation(event) {
-    // console.log("STARTING SIMULATION");
-    this.props.startSimulation(this.props.cars);
+    if(this.props.actionButtons.playEnabled){
+      // console.log("STARTING SIMULATION");
+      this.props.startSimulation(this.props.cars);
+    }else{
+      // console.log("STOPPING SIMULATION");
+      this.props.stopSimulation();
+    }
+    
+  }
+
+  restartSimulation(){
+    // console.log("RESTARTING SIMULATION");
+    this.props.replaySimulation(this.props.cars);
   }
 
   displayWarnings(){
@@ -26,7 +37,7 @@ class Header extends Component {
 
  render() {
    // console.log("THIS.PROPS.actionButtons ->", this.props.actionButtons)
-   console.log("CARS ->", this.props.cars);
+  //  console.log("CARS ->", this.props.cars);
     return (
         <header>
             <div className="header-part">
@@ -37,7 +48,7 @@ class Header extends Component {
               </div>
               <div className="header-title">Simulation Monitor</div>
               {this.props.user && <div>
-                  <ActionButtons startSimulation={this.startSimulation.bind(this)} userName={this.props.user.name}
+                  <ActionButtons startSimulation={this.startSimulation.bind(this)} userName={this.props.user.name} restartSimulation={this.restartSimulation.bind(this)}
                   actionButtons={this.props.actionButtons} displayWarnings={this.displayWarnings.bind(this)}/>
                   <Dropdown items={this.props.scenarios} />
               </div> }
@@ -59,7 +70,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ startSimulation, showWarnings }, dispatch);
+  return bindActionCreators({ startSimulation, showWarnings, stopSimulation, replaySimulation }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

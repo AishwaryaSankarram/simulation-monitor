@@ -45,7 +45,7 @@ class Dropdown extends React.Component {
     return(
       <div className="pull-right">
         <MuiThemeProvider >
-          <SelectField
+          <SelectField disabled={window.socketStart}
           value={this.state.value} onChange={this.handleChange} style={styles.customWidth}>
               {this.state.value === 1 && <MenuItem value={1} primaryText={"Select A Scenario"} disabled={true}/>}
             {menuElements}

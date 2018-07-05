@@ -56,26 +56,26 @@ export class ActionButtons extends Component {
     return (
       <MuiThemeProvider >
         <div className="pull-right">
-          <div className="action-button-container ">
+          <div className="action-button-container " title={"Logged in as " + this.props.userName }>
             <button onClick={this.menuClick.bind(this)}>
               <i className="fa fa-user-circle"> {this.props.userName}</i>
             </button>
           </div>
-          <div className="action-button-container">
+          <div className="action-button-container" title="Show Warnings">
             <button disabled={!this.props.actionButtons.warningViewEnabled} onClick={this.props.displayWarnings}>
               <i className="fa fa-exclamation-circle"></i>
             </button>
           </div>
 
-        <div className="action-button-container">
-              <button disabled={!this.props.actionButtons.replayEnabled} onClick={this.props.startSimulation}>
+        <div className="action-button-container" title="Restart Simulation">
+            <button disabled={!this.props.actionButtons.replayEnabled} onClick={this.props.restartSimulation}>
                 <i className="fa fa-repeat"></i>
               </button>
         </div>
 
-          <div className="action-button-container">
-            <button disabled={!this.props.actionButtons.playEnabled} onClick={this.props.startSimulation}>
-              <i className="fa fa-play"></i>
+          <div className="action-button-container" title="Start Simulation">
+            <button onClick={this.props.startSimulation} disabled={!this.props.actionButtons.playEnabled && !window.socketStart}>
+              <i className={!window.socketStart ? "fa fa-play" : this.props.actionButtons.playEnabled ? "fa fa-play" : "fa fa-stop"} ></i>
             </button>
           </div>
 

@@ -1,9 +1,10 @@
-import { PLAY_CLICKED, CAR_DATA } from '../actions/constants'
+import { PLAY_CLICKED, CAR_DATA, REPLAY_CLICKED } from '../actions/constants'
 
 export default function(state={overlayShow: false, overlayText:""}, action) {
 
   switch(action.type) {
-
+    
+    case REPLAY_CLICKED:
     case PLAY_CLICKED:
       return {overlayShow: true, overlayText: "Simulation is Starting Up. Please Wait..."};
 

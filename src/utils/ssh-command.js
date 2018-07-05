@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function callCommandForExecution(sysCommand) {
 
-  console.log("CALL COMMAND FOR EXECUTION CALLED");
+  // console.log("CALL COMMAND FOR EXECUTION CALLED");
 
   let payload = [{remotePath:"/tmp/", remoteIp:"192.168.1.5", remotePass:"P@ssc0de", remoteUser:"murali", command:sysCommand}];
 

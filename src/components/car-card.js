@@ -29,15 +29,15 @@ export default class CarCard extends Component {
             </tr>
             <tr>
               <td>Latitude</td>
-              <td>{this.props.latitude}</td>
+              <td>{this.props.latitude.toFixed(12)}</td>
             </tr>
             <tr>
               <td>Longitude</td>
-              <td>{this.props.longitude}</td>
+              <td>{this.props.longitude.toFixed(12)}</td>
             </tr>
             <tr>
               <td>Time to Destination</td>
-              <td>{this.props.timeToDest + " sec"}</td>
+              <td>{this.props.timeToDest}</td>
             </tr>
             <tr>
               <td>Speed</td>

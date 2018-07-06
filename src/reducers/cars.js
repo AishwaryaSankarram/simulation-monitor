@@ -28,7 +28,6 @@ export default function(state = null, action) {
 
     case REPLAY_CLICKED:    
     case PLAY_CLICKED:
-        console.log("Replay/play Clicked----------");
         newState = [...state];
         newState.forEach( (car) => {
           car.latitude = car.initialLat;

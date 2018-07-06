@@ -36,7 +36,7 @@ class HomePage extends Component {
       // console.log("RAW DATA =>", data);
       // console.log("DATA.LENGTH", data.length);
       if(data.length > 0 && window.socketStart) {
-        // console.log("Subscribing to data....");
+        console.log("Subscribing to data....");
         window.socket.emit("subscribe", SUBSCRIPTION_URL);
         self.toastsObj={};
         window.socket.on('console', function(data) {
@@ -100,17 +100,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  let cars = state.cars;
-  let carHash = {};
-  if(cars && cars.length > 0){
-    cars.forEach(car => {
-      carHash[car.vehId] = car.carLabel;
-    });
-  }
   return {
     scenarios: state.scenarios,
     modalIsOpen: state.modalIsOpen,
-    carMap: carHash,
+    carMap: state.carMap,
     overlayShow: state.overlay.overlayShow,
     overlayText: state.overlay.overlayText
   }

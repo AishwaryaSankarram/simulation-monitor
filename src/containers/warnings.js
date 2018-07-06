@@ -43,14 +43,9 @@ class WarningsTable extends Component{
 }
 
 function mapStateToProps(state){
-    let cars = state.cars;
-    let carHash = {};
-    cars.forEach(car => {
-        carHash[car.vehId] = car.carLabel;
-    });
     return {
         warnings: state.warnings.data,
-        carMap: carHash
+        carMap: state.carMap
     };
 }
 

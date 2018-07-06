@@ -8,7 +8,8 @@ import ActionButtonsReducer from './action-buttons';
 import MapViewReducer from './map-view';
 import HeaderReducer from "./header";
 import WarningsReducer from './warnings';
-import OverlayReducer from './overlay'
+import OverlayReducer from './overlay';
+import CarMap from "./car-map";
 
 const rootReducer = combineReducers({
   scenarios: ScenariosReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   mapView: MapViewReducer,
   warnings: WarningsReducer,
   modalIsOpen: HeaderReducer,
+  carMap: CarMap,
   overlay: OverlayReducer
 });
 

@@ -55,3 +55,10 @@
 .checkbox-list li label{
     padding-left: 0px;
 }
+
+.settings-menu{
+    top: 45px !important;
+    right: 10px;
+    left: unset !important;
+    padding: 10px;
+}

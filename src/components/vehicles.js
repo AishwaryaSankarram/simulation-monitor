@@ -8,21 +8,23 @@ export class Vehicles extends Component {
   render() {
      // It is up to the user to zoom and view wherever he/she wants to - 04/07/2018
      //Revert to fitBounds - 05/07/2018
-    var latLngBounds;
-    let map = this.props.mapObj;
-    if(this.props.cars) {
-      latLngBounds = new window.google.maps.LatLngBounds();
-      this.props.cars.forEach( (car) => {
-        // if(car.useAsEv){
-          let latLng = new window.google.maps.LatLng({ lat: parseFloat(car.latitude), lng: parseFloat(car.longitude) });
-          latLngBounds.extend(latLng);
-/*           if (!map.getBounds().contains(latLng)) {
-            map.panTo(latLng);  
+     if(this.props.zoomOption !== '3'){
+          var latLngBounds;
+          let map = this.props.mapObj;
+          if(this.props.cars) {
+            latLngBounds = new window.google.maps.LatLngBounds();
+            this.props.cars.forEach( (car) => {
+              if(car.useAsEv || this.props.zoomOption !== '2'){
+                let latLng = new window.google.maps.LatLng({ lat: parseFloat(car.latitude), lng: parseFloat(car.longitude) });
+                latLngBounds.extend(latLng);
+      /*           if (!map.getBounds().contains(latLng)) {
+                  map.panTo(latLng);  
+                }
+      */        
+              }
+            });
+            map.fitBounds(latLngBounds);
           }
- */        
-        // }
-      });
-      map.fitBounds(latLngBounds);
     }
     let carMarkers = this.props.cars.map( (car,index) => {
       let icon = Object.assign({}, carIcon);
@@ -48,7 +50,8 @@ export class Vehicles extends Component {
 
 function mapStateToProps(state) {
   return {
-    cars: state.cars
+    cars: state.cars,
+    zoomOption: state.zoomOption
   }
 }
 

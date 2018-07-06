@@ -32,6 +32,11 @@ export const MyMapComponent = compose(
   <GoogleMap ref={props.setZoom}
     defaultZoom={20}
     defaultCenter={{ lat: 37.41185, lng: -121.99999000000003 }}
+    options={
+      {
+        maxZoom: 22
+      }
+    }
   >
   {props.mapView.previewMode && <PreviewPolylines mapObj={props.mapObj} />}
   {props.mapView.playMode &&

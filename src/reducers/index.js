@@ -9,6 +9,7 @@ import MapViewReducer from './map-view';
 import HeaderReducer from "./header";
 import WarningsReducer from './warnings';
 import OverlayReducer from './overlay';
+import ZoomOptionReducer from './zoom-options';
 import CarMap from "./car-map";
 
 const rootReducer = combineReducers({
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   warnings: WarningsReducer,
   modalIsOpen: HeaderReducer,
   carMap: CarMap,
+  zoomOption: ZoomOptionReducer,
   overlay: OverlayReducer
 });
 

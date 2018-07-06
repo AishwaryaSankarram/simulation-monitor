@@ -6,13 +6,9 @@ import { ActionButtons } from '../containers/action-buttons'
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { startSimulation, stopSimulation, replaySimulation } from '../actions/scenario-actions';
-import { showWarnings } from '../actions/header-actions';
+import { showWarnings, zoomOptionChange } from '../actions/header-actions';
 
 class Header extends Component {
-
-  menuClick() {
-    // console.log("Menu clicked");
-  }
 
   startSimulation(event) {
     if(this.props.actionButtons.playEnabled){
@@ -22,7 +18,6 @@ class Header extends Component {
       // console.log("STOPPING SIMULATION");
       this.props.stopSimulation();
     }
-    
   }
 
   restartSimulation(){
@@ -34,6 +29,9 @@ class Header extends Component {
     this.props.showWarnings(false);
   }
 
+  zoomOptionChange(value){
+    this.props.zoomOptionChange(value);
+  }
 
  render() {
    // console.log("THIS.PROPS.actionButtons ->", this.props.actionButtons)
@@ -49,8 +47,9 @@ class Header extends Component {
               <div className="header-title">Simulation Monitor</div>
               {this.props.user && <div>
                   <ActionButtons startSimulation={this.startSimulation.bind(this)} userName={this.props.user.name} restartSimulation={this.restartSimulation.bind(this)}
-                  actionButtons={this.props.actionButtons} displayWarnings={this.displayWarnings.bind(this)}/>
-                  <Dropdown items={this.props.scenarios} />
+                  zoomOption={this.props.zoomOption} zoomOptionChange={this.zoomOptionChange.bind(this)}
+                  actionButtons={this.props.actionButtons} displayWarnings={this.displayWarnings.bind(this)} />
+            <Dropdown items={this.props.scenarios} />
               </div> }
 
             </div>
@@ -65,12 +64,13 @@ function mapStateToProps(state) {
     scenarios: state.scenarios,
     cars: state.cars,
     actionButtons: state.actionButtons,
+    zoomOption: state.zoomOption,
     warningsShown: state.modalIsOpen
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ startSimulation, showWarnings, stopSimulation, replaySimulation }, dispatch);
+  return bindActionCreators({ startSimulation, showWarnings, stopSimulation, replaySimulation, zoomOptionChange}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

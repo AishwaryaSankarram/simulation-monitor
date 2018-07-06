@@ -32,7 +32,7 @@ class WarningMarkers extends Component {
 
 function mapStateToProps(state) {
   return {
-    warningData: state.warnings.data
+    warningData: state.warnings
   }
 }
 

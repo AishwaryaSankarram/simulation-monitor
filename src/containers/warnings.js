@@ -44,7 +44,7 @@ class WarningsTable extends Component{
 
 function mapStateToProps(state){
     return {
-        warnings: state.warnings.data,
+        warnings: state.warnings,
         carMap: state.carMap
     };
 }

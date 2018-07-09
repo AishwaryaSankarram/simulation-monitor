@@ -1,9 +1,9 @@
 .action-button-container button {
-    background: rgb(0, 188, 212);
+    background: #93c84a;
     outline: none;
     border: 1px solid #fff;
     padding: 6px;
-    color: #fff;
+    color: #000000;
 }
 
 .action-button-container button:disabled {

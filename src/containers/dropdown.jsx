@@ -10,7 +10,7 @@ import { stopSimulation } from '../actions/scenario-actions';
 
 const styles = {
   customWidth: {
-    width: 250
+    width: 200
   }
 };
 
@@ -38,7 +38,7 @@ class Dropdown extends React.Component {
       // console.log("KEYSTRING ", keyString);
       // console.log("item.name ->", item.name)
       return (
-          <MenuItem key= {keyString} value={item} primaryText={item.name} />
+          <MenuItem key= {keyString} value={item} primaryText={item.name} title={item.name}/>
         );
     });
 

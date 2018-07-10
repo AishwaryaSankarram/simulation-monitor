@@ -11,6 +11,7 @@ import WarningsReducer from './warnings';
 import WarningCountReducer from './warning-count';
 import OverlayReducer from './overlay';
 import ZoomOptionReducer from './zoom-options';
+import ShowRoutesReducer from './show-routes';
 import CarMap from "./car-map";
 
 const rootReducer = combineReducers({
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   modalIsOpen: HeaderReducer,
   carMap: CarMap,
   zoomOption: ZoomOptionReducer,
+  showRoutes: ShowRoutesReducer,
   overlay: OverlayReducer
 });
 

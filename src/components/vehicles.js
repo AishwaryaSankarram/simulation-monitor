@@ -34,10 +34,24 @@ export class Vehicles extends Component {
       let pos = {lat: parseFloat(car.latitude), lng: parseFloat(car.longitude)};
       // console.warn("CAR PATH", car.path);
       let polyOptions = {strokeColor: car.color || "#000000"};
-      let path = car.path ? [...car.path] : [];
+      let carPath = car.path ? [...car.path] : [];
+      let lineSymbol = {
+        path: 'M 0,-1 0,1',
+        strokeOpacity: 1,
+        strokeColor: car.color || "#000000",
+        scale: 4
+      };
+      let previewIcon = [
+      {
+        icon: lineSymbol,
+        offset: '0',
+        repeat: '20px'
+      }];
+      let routeOptions = { strokeColor: car.color || "#000000", strokeOpacity: 0, icons: previewIcon }
       return(
         <div key={"car_veh_" + index}>
-          <Polyline key={"poly_veh_" + index} path={path} options={polyOptions} />
+          <Polyline key={"poly_veh_" + index} path={carPath} options={polyOptions} />
+          {this.props.showRoutes && <Polyline key={"old_path_veh_" + index} path={car.poly} options={routeOptions} />}
           <Marker key={"markers_veh_" + index} position={pos} icon={icon} />
         </div>
       );
@@ -51,6 +65,7 @@ export class Vehicles extends Component {
 function mapStateToProps(state) {
   return {
     cars: state.cars,
+    showRoutes: state.showRoutes,
     zoomOption: state.zoomOption
   }
 }

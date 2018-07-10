@@ -50,7 +50,7 @@ export class ConfirmModal extends Component {
                         </div>
                         {this.props.okAction &&
                             <div className="modal-footer">
-                                <RaisedButton label={this.props.labelOk || "Yes"} primary={true} style={style} onClick={this.onSave} />
+                                <RaisedButton className="btn-primary" label={this.props.labelOk || "Yes"} primary={true} style={style} onClick={this.onSave} />
                                 <RaisedButton label={this.props.labelCancel || "No"} style={style} onClick={this.closeModal} />
                             </div>
                         }

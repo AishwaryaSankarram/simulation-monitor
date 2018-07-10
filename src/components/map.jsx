@@ -34,7 +34,7 @@ export const MyMapComponent = compose(
     defaultCenter={{ lat: 37.41185, lng: -121.99999000000003 }}
     options={
       {
-        maxZoom: 22
+        maxZoom: 21
       }
     }
   >

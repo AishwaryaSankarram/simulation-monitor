@@ -22,3 +22,5 @@ export const CAR_DATA = "CAR_DATA";
 export const SHOW_WARNINGS = "SHOW_WARNINGS";
 
 export const ZOOM_OPTION_CHANGE = "ZOOM_OPTION_CHANGE";
+
+export const TOGGLE_ROUTES = "TOGGLE_ROUTES";

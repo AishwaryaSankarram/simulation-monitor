@@ -5,6 +5,7 @@ import MenuItem from "material-ui/MenuItem";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Logouticon from 'material-ui/svg-icons/action/power-settings-new';
 import { ConfirmModal } from "../layouts/confirm-modal";
+import { Checkbox } from "react-bootstrap";
 import '../css/action-buttons.css';
 
 
@@ -15,10 +16,12 @@ export class ActionButtons extends Component {
       isMenuOpen: false,
       isSettingsOpen: false,
       mapOption: this.props.zoomOption,
+      showRoutes: this.props.showRoutes,
       dialogVisible: false
     };
     this.settingsClick = this.settingsClick.bind(this);
-    this.radioChange = this.radioChange.bind(this);
+    this.radioChange = this.radioChange.bind(this); 
+    this.toggleRoutes = this.toggleRoutes.bind(this); 
   }
 
   menuClick() {
@@ -28,6 +31,11 @@ export class ActionButtons extends Component {
       isMenuOpen: true,
       // anchorEl: event.currentTarget,
     });
+  }
+
+  toggleRoutes(event) {
+    this.setState({showRoutes: event.target.checked});
+    this.props.toggleRoutes(event.target.checked);
   }
 
   settingsClick (event) {
@@ -149,6 +157,9 @@ export class ActionButtons extends Component {
                         Allow Manual Zoom
                  </label>
               </div>
+              <Checkbox checked={this.state.showRoutes} onChange={(event) => this.toggleRoutes(event)}>
+                Show Car Path
+              </Checkbox>
             </form>
           </Popover>
 

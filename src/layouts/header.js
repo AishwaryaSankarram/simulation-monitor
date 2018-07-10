@@ -6,7 +6,7 @@ import { ActionButtons } from '../containers/action-buttons'
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { startSimulation, stopSimulation, replaySimulation } from '../actions/scenario-actions';
-import { showWarnings, zoomOptionChange } from '../actions/header-actions';
+import { showWarnings, zoomOptionChange, toggleRoutes } from '../actions/header-actions';
 
 class Header extends Component {
 
@@ -38,6 +38,10 @@ class Header extends Component {
     this.props.zoomOptionChange(value);
   }
 
+  toggleRoutes(value){
+    this.props.toggleRoutes(value);
+  }
+
  render() {
    // console.log("THIS.PROPS.actionButtons ->", this.props.actionButtons)
   //  console.log("CARS ->", this.props.cars);
@@ -54,6 +58,7 @@ class Header extends Component {
                   <ActionButtons startSimulation={this.startSimulation.bind(this)} userName={this.props.user.name} 
                   restartSimulation={this.restartSimulation.bind(this)} stopSimulation={this.stopSimulation.bind(this)}
                   zoomOption={this.props.zoomOption} zoomOptionChange={this.zoomOptionChange.bind(this)}
+                  toggleRoutes={this.toggleRoutes.bind(this)} showRoutes={this.props.showRoutes}
                   actionButtons={this.props.actionButtons} displayWarnings={this.displayWarnings.bind(this)} />
             <Dropdown items={this.props.scenarios} />
               </div> }
@@ -71,12 +76,13 @@ function mapStateToProps(state) {
     cars: state.cars,
     actionButtons: state.actionButtons,
     zoomOption: state.zoomOption,
+    showRoutes: state.showRoutes,
     warningsShown: state.modalIsOpen
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ startSimulation, showWarnings, stopSimulation, replaySimulation, zoomOptionChange}, dispatch);
+  return bindActionCreators({ startSimulation, showWarnings, stopSimulation, replaySimulation, zoomOptionChange, toggleRoutes}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -20,6 +20,11 @@ class Header extends Component {
     }
   }
 
+  stopSimulation(){
+    // console.log("STOPPING SIMULATION");
+    this.props.stopSimulation();
+  }
+
   restartSimulation(){
     // console.log("RESTARTING SIMULATION");
     this.props.replaySimulation(this.props.cars);
@@ -46,7 +51,8 @@ class Header extends Component {
               </div>
               <div className="header-title">Simulation Monitor</div>
               {this.props.user && <div>
-                  <ActionButtons startSimulation={this.startSimulation.bind(this)} userName={this.props.user.name} restartSimulation={this.restartSimulation.bind(this)}
+                  <ActionButtons startSimulation={this.startSimulation.bind(this)} userName={this.props.user.name} 
+                  restartSimulation={this.restartSimulation.bind(this)} stopSimulation={this.stopSimulation.bind(this)}
                   zoomOption={this.props.zoomOption} zoomOptionChange={this.zoomOptionChange.bind(this)}
                   actionButtons={this.props.actionButtons} displayWarnings={this.displayWarnings.bind(this)} />
             <Dropdown items={this.props.scenarios} />

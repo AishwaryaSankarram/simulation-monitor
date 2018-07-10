@@ -71,6 +71,7 @@ export class ActionButtons extends Component {
 
   handleLogout() {
     // console.log("Comes to logout---------");
+    this.props.stopSimulation();
     localStorage.clear();
     window.location.reload();
   }
@@ -108,7 +109,7 @@ export class ActionButtons extends Component {
               </button>
         </div>
 
-          <div className="action-button-container" title="Start Simulation">
+          <div className="action-button-container" title={!window.socketStart ? "Start Simulation" : this.props.actionButtons.playEnabled ? "Start Simulation" : "Stop Simulation"}>
             <button onClick={this.props.startSimulation} disabled={!this.props.actionButtons.playEnabled && !window.socketStart}>
               <i className={!window.socketStart ? "fa fa-play" : this.props.actionButtons.playEnabled ? "fa fa-play" : "fa fa-stop"} ></i>
             </button>

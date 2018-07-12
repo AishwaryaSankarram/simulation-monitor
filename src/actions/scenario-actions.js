@@ -1,6 +1,7 @@
 import { Api } from '../utils/api.jsx';
 import axios from 'axios';
 import { FETCH_ALL_SCENARIOS, PLAY_CLICKED, CAR_DATA, STOP_CLICKED, REPLAY_CLICKED } from './constants.js';
+import { SUBSCRIPTION_URL } from '../config';
 // import { START_SCRIPT_COMMAND } from '../config.js'
 
 export async function fetchAllScenarios(authPayload) {
@@ -26,6 +27,7 @@ export async function fetchAllScenarios(authPayload) {
 
 export function stopSimulation() {
   window.socketStart = false;
+  window.socket.emit("unsubscribe", window.subUrl || SUBSCRIPTION_URL);
   window.socket.emit("stop", JSON.stringify({ command: "stop" }), function (response) {
     if (response === "failed") {
       window.socketStart = true;
@@ -46,6 +48,7 @@ export function replaySimulation(cars) {
     payload.push(carPayload);
   });
   objToSend.start = payload;
+  window.socket.emit("unsubscribe", window.subUrl || SUBSCRIPTION_URL);
   window.socket.emit("stop", JSON.stringify({ command: "stop" }), function (r) {
     window.socketStart = false;
     window.socket.emit("start", JSON.stringify(objToSend), function (response) {
@@ -55,6 +58,7 @@ export function replaySimulation(cars) {
       } else {
         window.socketStart = true;
       }
+      window.socket.emit("subscribe", window.subUrl || SUBSCRIPTION_URL);
     });
   });
 
@@ -95,8 +99,7 @@ export function startSimulation(cars) {
 
   objToSend.start = payload;
   // console.log("OBJTOSEND ->", objToSend);
-
-
+  
   window.socket.emit("start", JSON.stringify(objToSend), function (response) {
     // console.log("RESPONSE FROM START EVENT =>", response);
     if (response === "failed") {
@@ -105,6 +108,7 @@ export function startSimulation(cars) {
     } else {
       window.socketStart = true;
     }
+    window.socket.emit("subscribe", window.subUrl || SUBSCRIPTION_URL);
   });
 
   return {

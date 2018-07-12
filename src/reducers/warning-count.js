@@ -2,15 +2,16 @@ import { warningsInitialState } from '../constants.js'
 import { CAR_DATA, PLAY_CLICKED, REPLAY_CLICKED } from '../actions/constants.js';
 
 export default function (state = warningsInitialState, action) {
+    let copiedState = Object.assign({}, state);
     switch (action.type) {
         case CAR_DATA:
-            let copiedState = state;
             let warningsHash = Object.assign({}, copiedState);
             let warningArray = action.payload["AwarenessData"].Warning.split(" ");
             if (Object.keys(warningsInitialState).indexOf(warningArray[0]) > -1) {
                 warningArray.forEach(warning => {
+                    let wc = warningsHash[warning];
                     if (warningsInitialState.hasOwnProperty(warning)) {
-                        warningsHash[warning] = warningsHash[warning] + 1;
+                        warningsHash[warning] = wc + 1;
                     }
                 });
             }
@@ -33,6 +34,6 @@ export default function (state = warningsInitialState, action) {
             };
 
         default:
-            return state;
+            return copiedState;
     }
 }

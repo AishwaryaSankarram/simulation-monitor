@@ -81,6 +81,7 @@ export class ActionButtons extends Component {
     // console.log("Comes to logout---------");
     this.props.stopSimulation();
     localStorage.clear();
+    window.socket.close();
     window.location.reload();
   }
 
@@ -158,7 +159,7 @@ export class ActionButtons extends Component {
                  </label>
               </div>
               <Checkbox checked={this.state.showRoutes} onChange={(event) => this.toggleRoutes(event)}>
-                Show Car Path
+                Show Planned Path
               </Checkbox>
             </form>
           </Popover>

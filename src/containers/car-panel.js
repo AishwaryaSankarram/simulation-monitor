@@ -1,7 +1,6 @@
 
 import React, {Component} from 'react';
 import CarCard  from '../components/car-card';
-import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 import { updateEV } from '../actions/car-actions'
 import '../css/car-panel.css';
@@ -42,9 +41,6 @@ class CarPanel extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ updateEV }, dispatch);
-}
 
 function mapStateToProps(state) {
   return {
@@ -52,4 +48,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarPanel)
+export default connect(mapStateToProps, { updateEV: updateEV})(CarPanel)

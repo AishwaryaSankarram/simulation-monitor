@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Modal from 'react-modal';
 import WarningsTable from '../containers/warnings';
 import { connect } from 'react-redux'
-import { bindActionCreators } from "redux";
 import { showWarnings } from "../actions/header-actions";
 import { MuiThemeProvider, RaisedButton } from 'material-ui';
 import '../css/modal.css';
@@ -54,8 +53,5 @@ class WarningsModal extends Component {
 
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ showWarnings }, dispatch);
-}
+export default connect(null, {showWarnings}) (WarningsModal);
 
-export default connect(null, mapDispatchToProps) (WarningsModal);

@@ -4,7 +4,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { connect } from 'react-redux'
-import { bindActionCreators } from "redux";
 
 import '../css/login-page.css';
 
@@ -74,8 +73,5 @@ class LoginPage extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ checkCredentials }, dispatch);
-}
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(null, { checkCredentials: checkCredentials })(LoginPage);

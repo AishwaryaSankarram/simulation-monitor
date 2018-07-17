@@ -55,6 +55,7 @@ export default function(state = null, action) {
           newStateEV.longitude = parseFloat(evCar['LongitudeInDeg']);
           let evLatLngObj = {lat: newStateEV.latitude, lng: newStateEV.longitude};
           newStateEV.path.push(evLatLngObj);
+          newStateEV.path = [...newStateEV.path, evLatLngObj];
           newStateEV.speed = evCar['SpeedInMetersPerSec'];
           newStateEV.timeToDest = evCar['TimeToDestSec'].toString();
           newStateEV.heading = parseFloat(evCar['HeadingInDeg']);
@@ -64,7 +65,8 @@ export default function(state = null, action) {
           newStateRV.latitude = parseFloat(rvCar['LatitudeInDeg']);
           newStateRV.longitude = parseFloat(rvCar['LongitudeInDeg']);
           let rvLatLngObj = {lat: newStateRV.latitude, lng: newStateRV.longitude};
-          newStateRV.path.push(rvLatLngObj);
+          // newStateRV.path.push(rvLatLngObj);
+          newStateRV.path = [...newStateRV.path, rvLatLngObj];
           newStateRV.speed = rvCar['SpeedInMetersPerSec'];
           newStateRV.timeToDest = rvCar['TimeToDestSec'].toString();
           newStateRV.heading = parseFloat(rvCar['HeadingInDeg']);

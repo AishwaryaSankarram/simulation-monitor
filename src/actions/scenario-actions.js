@@ -53,7 +53,7 @@ export function replaySimulation(cars) {
     window.socketStart = false;
     window.socket.emit("start", JSON.stringify(objToSend), function (response) {
       if (response === "failed") {
-        window.socket.emit("start", JSON.stringify(payload));
+        window.socket.emit("start", JSON.stringify(objToSend));
         window.socketStart = false;
       } else {
         window.socketStart = true;

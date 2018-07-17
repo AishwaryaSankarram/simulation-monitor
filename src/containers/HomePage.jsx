@@ -46,7 +46,7 @@ class HomePage extends Component {
     let self = this;
     let msg = JSON.parse(data);
     let content = JSON.parse(msg.data);
-    // console.log('RECEIVING : ', JSON.parse(msg.data)["messageID"], " at time ", new Date() + " " + new Date().getMilliseconds());
+    // console.log('RECEIVING : ', parseInt(content["messageID"], 10), " at time ", new Date().toLocaleTimeString() + " " + new Date().getMilliseconds());
     self.displayWarnings(content);
     self.props.newCarData(content);
   }
@@ -65,12 +65,22 @@ class HomePage extends Component {
         if (warning.length > 0) {
           let toastKey = warning + evLocation.vehID + rvLocation.vehID;
           if (self.toastsObj.hasOwnProperty(toastKey)) {
-            self.toastsObj[toastKey].count = self.toastsObj[toastKey].count + 1;
+            let toastCount = self.toastsObj[toastKey].count + 1;
             let toastData = self.toastsObj[toastKey].data;
+            if(toast.isActive(toastData)){
             toast.update(toastData, {
-              render: 'Warning ' + warning + ' received  between ' + self.props.carMap[evLocation.vehID] + ' and ' + self.props.carMap[rvLocation.vehID] + ' (' + self.toastsObj[toastKey].count + ')',
-              autoClose: 5000
-            })
+              render: 'Warning ' + warning + ' received  between ' + self.props.carMap[evLocation.vehID] + ' and ' 
+              + self.props.carMap[rvLocation.vehID] + ' (' + toastCount + ')',
+            });
+            }else{
+              toast.dismiss(toastData);
+              toastData = toast.error('Warning ' + warning + ' received  between ' + self.props.carMap[evLocation.vehID] + ' and '
+                + self.props.carMap[rvLocation.vehID] + ' (' + toastCount + ')', {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 5000
+              });
+            }
+            self.toastsObj[toastKey] = { count: toastCount, data: toastData };
           } else {
             let toastData = toast.error('Warning ' + warning + ' received between ' + self.props.carMap[evLocation.vehID] + ' and ' + self.props.carMap[rvLocation.vehID], {
               position: toast.POSITION.TOP_RIGHT,

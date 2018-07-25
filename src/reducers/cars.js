@@ -54,7 +54,7 @@ export default function(state = null, action) {
           newStateEV.latitude = parseFloat(evCar['LatitudeInDeg']);
           newStateEV.longitude = parseFloat(evCar['LongitudeInDeg']);
           let evLatLngObj = {lat: newStateEV.latitude, lng: newStateEV.longitude};
-          newStateEV.path.push(evLatLngObj);
+          // newStateEV.path.push(evLatLngObj);
           newStateEV.path = [...newStateEV.path, evLatLngObj];
           newStateEV.speed = evCar['SpeedInMetersPerSec'];
           newStateEV.timeToDest = evCar['TimeToDestSec'].toString();

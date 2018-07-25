@@ -13,6 +13,7 @@ import OverlayReducer from './overlay';
 import ZoomOptionReducer from './zoom-options';
 import ShowRoutesReducer from './show-routes';
 import CarMap from "./car-map";
+import MessageId from "./message-id";
 
 const rootReducer = combineReducers({
   scenarios: ScenariosReducer,
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   carMap: CarMap,
   zoomOption: ZoomOptionReducer,
   showRoutes: ShowRoutesReducer,
+  msgId: MessageId,
   overlay: OverlayReducer
 });
 

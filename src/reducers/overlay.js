@@ -6,7 +6,7 @@ export default function(state={overlayShow: false, overlayText:""}, action) {
     
     case REPLAY_CLICKED:
     case PLAY_CLICKED:
-      return {overlayShow: true, overlayText: "Simulation is Starting Up. Please Wait..."};
+      return {overlayShow: true, overlayText: "Simulation is starting up between " + action.payload + " cars . Please Wait..."};
 
     case CAR_DATA:
       return {overlayShow: false, overlayText: ""};

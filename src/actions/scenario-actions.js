@@ -112,7 +112,8 @@ export function startSimulation(cars) {
   });
 
   return {
-    type: PLAY_CLICKED
+    type: PLAY_CLICKED,
+    payload: cars.length
   }
 
 }

@@ -5,8 +5,10 @@ import { connect } from 'react-redux';
 class MyMapContainer extends Component {
 
   componentDidUpdate(){
-    let obj = { processed: true, messageID: this.props.msgId}
-    window.socket.emit("callback", JSON.stringify(obj));
+    if(this.props.msgId){
+      let obj = { processed: true, messageID: this.props.msgId }
+      window.socket.emit("callback", JSON.stringify(obj));
+    }
   }
 
   render() {

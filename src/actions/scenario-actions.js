@@ -119,8 +119,16 @@ export function startSimulation(cars) {
 }
 
 export function newCarData(data) { 
-  return {
-    type: CAR_DATA,
-    payload: data
+  if (data === null) {
+    let obj = { processed: false, content: "No Data received" }
+    window.socket.emit("callback", JSON.stringify(obj));
+    return {
+      type: "NO_DATA"
+    }
+  }else{
+    return {
+      type: CAR_DATA,
+      payload: data
+    }
   }
 }

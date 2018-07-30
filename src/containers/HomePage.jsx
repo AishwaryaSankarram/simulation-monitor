@@ -46,8 +46,10 @@ class HomePage extends Component {
     let self = this;
     let msg = JSON.parse(data);
     let content = JSON.parse(msg.data);
-    // console.log('RECEIVING : ', parseInt(content["messageID"], 10), " at time ", new Date().toLocaleTimeString() + " " + new Date().getMilliseconds());
-    self.displayWarnings(content);
+    if(content){
+      // console.log('RECEIVING : ', parseInt(content["messageID"], 10), " at time ", new Date().toLocaleTimeString() + " " + new Date().getMilliseconds());
+      self.displayWarnings(content);
+    }
     self.props.newCarData(content);
   }
 

@@ -10,7 +10,7 @@ import MyModal from '../layouts/Modal.jsx';
 import '../css/home-page.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { warningsInitialState } from '../constants.js';
+import { warningsInitialState, warnings } from '../constants.js';
 
 class HomePage extends Component {
 
@@ -47,8 +47,8 @@ class HomePage extends Component {
     let msg = JSON.parse(data);
     let content = JSON.parse(msg.data);
     if(content){
-      // console.log('RECEIVING : ', parseInt(content["messageID"], 10), " at time ", new Date().toLocaleTimeString() + " " + new Date().getMilliseconds());
-      self.displayWarnings(content);
+        // console.log('RECEIVING : ', parseInt(content["messageID"], 10), " at time ", new Date().toLocaleTimeString() + " " + new Date().getMilliseconds());
+        self.displayWarnings(content);
     }
     self.props.newCarData(content);
   }
@@ -66,25 +66,29 @@ class HomePage extends Component {
       warningArray.forEach(warning => {
         if (warning.length > 0) {
           let toastKey = warning + evLocation.vehID + rvLocation.vehID;
+          let text = 'Warning ' + warning + ' received  between ' + self.props.carMap[evLocation.vehID] + ' and '
+            + self.props.carMap[rvLocation.vehID];
           if (self.toastsObj.hasOwnProperty(toastKey)) {
             let toastCount = self.toastsObj[toastKey].count + 1;
             let toastData = self.toastsObj[toastKey].data;
             if(toast.isActive(toastData)){
             toast.update(toastData, {
-              render: 'Warning ' + warning + ' received  between ' + self.props.carMap[evLocation.vehID] + ' and ' 
-              + self.props.carMap[rvLocation.vehID] + ' (' + toastCount + ')',
+              render: text + ' (' + toastCount + ')',
             });
             }else{
               toast.dismiss(toastData);
-              toastData = toast.error('Warning ' + warning + ' received  between ' + self.props.carMap[evLocation.vehID] + ' and '
-                + self.props.carMap[rvLocation.vehID] + ' (' + toastCount + ')', {
+              let msg = new SpeechSynthesisUtterance(warnings[warning]);
+              window.speechSynthesis.speak(msg);
+              toastData = toast.error( text + ' (' + toastCount + ')', {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 5000
               });
             }
             self.toastsObj[toastKey] = { count: toastCount, data: toastData };
           } else {
-            let toastData = toast.error('Warning ' + warning + ' received between ' + self.props.carMap[evLocation.vehID] + ' and ' + self.props.carMap[rvLocation.vehID], {
+            let msg = new SpeechSynthesisUtterance(warnings[warning]);
+            window.speechSynthesis.speak(msg);
+            let toastData = toast.error(text, {
               position: toast.POSITION.TOP_RIGHT,
               autoClose: 5000
             });
@@ -96,11 +100,15 @@ class HomePage extends Component {
   }
 
   render() {
-
+    let text = this.props.overlayText;
+    if(text.length > 0){
+      let msg = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(msg);
+    }
     return(
       <div className="main-page">
         {this.props.overlayShow && <div className="overlay">
-          <div className="overlayText">{this.props.overlayText}</div>
+          <div className="overlayText">{text}</div>
           </div>}
         <CarPanel />
         <br />

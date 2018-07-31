@@ -46,7 +46,7 @@ class HomePage extends Component {
     let msg = JSON.parse(data);
     let content = JSON.parse(msg.data);
     if (content && content["AwarenessData"]){
-        console.log('RECEIVING : ', parseInt(content["messageID"], 10), " at time ", new Date().toLocaleTimeString() + " " + new Date().getMilliseconds());
+        // console.log('RECEIVING : ', parseInt(content["messageID"], 10), " at time ", new Date().toLocaleTimeString() + " " + new Date().getMilliseconds());
         self.displayWarnings(content);
     }
     self.props.newCarData(content);

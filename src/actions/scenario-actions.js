@@ -63,7 +63,8 @@ export function replaySimulation(cars) {
   });
 
   return {
-    type: REPLAY_CLICKED
+    type: REPLAY_CLICKED,
+    payload: cars.length
   }
 }
 

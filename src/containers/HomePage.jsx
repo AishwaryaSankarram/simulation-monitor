@@ -37,7 +37,6 @@ class HomePage extends Component {
     });
 
     // if (window.socketStart) {
-      self.toastsObj={};
       window.socket.on('console', self.processData);
       // } // End of main IF
   }
@@ -46,8 +45,8 @@ class HomePage extends Component {
     let self = this;
     let msg = JSON.parse(data);
     let content = JSON.parse(msg.data);
-    if(content){
-        // console.log('RECEIVING : ', parseInt(content["messageID"], 10), " at time ", new Date().toLocaleTimeString() + " " + new Date().getMilliseconds());
+    if (content && content["AwarenessData"]){
+        console.log('RECEIVING : ', parseInt(content["messageID"], 10), " at time ", new Date().toLocaleTimeString() + " " + new Date().getMilliseconds());
         self.displayWarnings(content);
     }
     self.props.newCarData(content);

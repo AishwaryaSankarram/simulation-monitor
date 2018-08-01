@@ -2,6 +2,7 @@ import { Api } from '../utils/api.jsx';
 import axios from 'axios';
 import { FETCH_ALL_SCENARIOS, PLAY_CLICKED, CAR_DATA, STOP_CLICKED, REPLAY_CLICKED } from './constants.js';
 import { SUBSCRIPTION_URL } from '../config';
+import { toast } from 'react-toastify';
 // import { START_SCRIPT_COMMAND } from '../config.js'
 
 export async function fetchAllScenarios(authPayload) {
@@ -27,6 +28,8 @@ export async function fetchAllScenarios(authPayload) {
 
 export function stopSimulation() {
   window.socketStart = false;
+  window.speechSynthesis.cancel();
+  toast.dismiss();
   window.socket.emit("unsubscribe", window.subUrl || SUBSCRIPTION_URL);
   window.socket.emit("stop", JSON.stringify({ command: "stop" }), function (response) {
     if (response === "failed") {
@@ -43,14 +46,16 @@ export function stopSimulation() {
 export function replaySimulation(cars) {
   let objToSend = {}
   let payload = [];
+  window.speechSynthesis.cancel();
+  toast.dismiss();
   cars.forEach((car) => {
     let carPayload = { "gpsFileName": car.geoFileName, "vehId": car.vehId, "isEv": car.useAsEv };
     payload.push(carPayload);
   });
   objToSend.start = payload;
   window.socket.emit("unsubscribe", window.subUrl || SUBSCRIPTION_URL);
+  window.socketStart = false;
   window.socket.emit("stop", JSON.stringify({ command: "stop" }), function (r) {
-    window.socketStart = false;
     window.socket.emit("start", JSON.stringify(objToSend), function (response) {
       if (response === "failed") {
         window.socket.emit("start", JSON.stringify(objToSend));
@@ -78,6 +83,8 @@ export function startSimulation(cars) {
   // let payload = {remotePath:"/tmp/", remoteIp:"localhost", remotePass:"P@ssc0de", remoteUser:"murali", command: START_SCRIPT_COMMAND};
   let objToSend = {}
   let payload = [];
+  toast.dismiss();
+  window.speechSynthesis.cancel();
   //
   // cars.forEach( (car,index) => {
   //   let gpsFileName = ((index + 1)*1000).toString()
@@ -104,7 +111,7 @@ export function startSimulation(cars) {
   window.socket.emit("start", JSON.stringify(objToSend), function (response) {
     // console.log("RESPONSE FROM START EVENT =>", response);
     if (response === "failed") {
-      window.socket.emit("start", JSON.stringify(payload));
+      window.socket.emit("start", JSON.stringify(objToSend));
       window.socketStart = false;
     } else {
       window.socketStart = true;

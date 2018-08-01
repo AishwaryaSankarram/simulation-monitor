@@ -1,4 +1,4 @@
-import { FETCH_CARS, CAR_DATA, STOP_CLICKED } from '../actions/constants'
+import { FETCH_CARS, CAR_DATA, STOP_CLICKED, REPLAY_CLICKED } from '../actions/constants';
 
 import { mapViewInitialState } from '../constants';
 
@@ -8,6 +8,7 @@ export default function(state = mapViewInitialState, action) {
     case FETCH_CARS:
        return {previewMode: true, playMode: false};
 
+    case REPLAY_CLICKED:
     case STOP_CLICKED:
       return { previewMode: true, playMode: false };
 

@@ -45,11 +45,13 @@ class HomePage extends Component {
     let self = this;
     let msg = JSON.parse(data);
     let content = JSON.parse(msg.data);
+    if (window.socketStart){ //Process data only when the socket is up ! (Fix for data coming after stop clicked)
     if (content && content["AwarenessData"]){
         // console.log('RECEIVING : ', parseInt(content["messageID"], 10), " at time ", new Date().toLocaleTimeString() + " " + new Date().getMilliseconds());
         self.displayWarnings(content);
     }
     self.props.newCarData(content);
+    }
   }
 
   displayWarnings(content){
@@ -58,7 +60,7 @@ class HomePage extends Component {
     let rvLocation = content["RVLocation"];
 
     let warningArray = content["AwarenessData"].Warning.split(" ");
-    if (content["messageID"] === "11"){
+    if (content["messageID"] === "11"){ //ToDo: Remove this when extensive testing is done
       self.toastsObj = {};
     }
     if (Object.keys(warningsInitialState).indexOf(warningArray[0]) > -1) {

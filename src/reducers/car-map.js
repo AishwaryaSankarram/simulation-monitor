@@ -7,7 +7,7 @@ export default function (state = null, action) {
             let carMap = {};
             let carResponse = action.payload.cars;
             carResponse.forEach((car) => {
-                carMap[car.vehId] = car.carLabel;
+                carMap[car.vehId] = {label: car.carLabel, poly: car.poly, color: car.color};
             });
             return carMap;
         default:

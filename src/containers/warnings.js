@@ -12,8 +12,8 @@ class WarningsTable extends Component{
                 <td>{w.lat}</td>
                 <td>{w.lng}</td>
                 <td>{w.speed}</td>
-                <td>{self.props.carMap[w.evId]}</td>
-                <td>{self.props.carMap[w.rvId]}</td>
+                <td>{self.props.carMap[w.evId].label}</td>
+                <td>{self.props.carMap[w.rvId].label}</td>
             </tr>
             );
         });

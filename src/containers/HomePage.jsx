@@ -67,8 +67,8 @@ class HomePage extends Component {
       warningArray.forEach(warning => {
         if (warning.length > 0) {
           let toastKey = warning + evLocation.vehID + rvLocation.vehID;
-          let text = 'Warning ' + warning + ' received  between ' + self.props.carMap[evLocation.vehID] + ' and '
-            + self.props.carMap[rvLocation.vehID];
+          let text = 'Warning ' + warning + ' received  between ' + self.props.carMap[evLocation.vehID].label + ' and '
+            + self.props.carMap[rvLocation.vehID].label;
           if (self.toastsObj.hasOwnProperty(toastKey)) {
             let toastCount = self.toastsObj[toastKey].count + 1;
             let toastData = self.toastsObj[toastKey].data;

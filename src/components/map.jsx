@@ -1,10 +1,11 @@
 import { compose, withProps, lifecycle } from "recompose"
 import React from 'react';
 import PreviewPolylines  from './preview-polylines';
-import WarningMarkers from './warning-markers'
-import Vehicles from './vehicles'
+import WarningMarkers from './warning-markers';
+import Vehicles from './vehicles';
 
 import { withGoogleMap, GoogleMap} from "react-google-maps";
+import Routes from "./routes";
 
 
 export const MyMapComponent = compose(
@@ -42,6 +43,7 @@ export const MyMapComponent = compose(
   {props.mapView.playMode &&
     <div>
       <Vehicles mapObj={props.mapObj} />
+      <Routes />
       <WarningMarkers />
     </div>
     }

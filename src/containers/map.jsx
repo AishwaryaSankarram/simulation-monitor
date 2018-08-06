@@ -6,6 +6,7 @@ class MyMapContainer extends Component {
 
   componentDidUpdate(){
     if(this.props.msgId){
+      console.log('PROCESSED : ', this.props.msgId, " at time ", new Date().toLocaleTimeString() + " " + new Date().getMilliseconds());
       let obj = { processed: true, messageID: this.props.msgId }
       window.socket.emit("callback", JSON.stringify(obj));
     }

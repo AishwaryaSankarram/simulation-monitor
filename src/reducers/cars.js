@@ -51,25 +51,23 @@ export default function (state = null, action) {
 
 
         if (newStateEV) {
-          newStateEV.latitude = parseFloat(evCar['LatitudeInDeg']);
-          newStateEV.longitude = parseFloat(evCar['LongitudeInDeg']);
-          let evLatLngObj = { lat: newStateEV.latitude, lng: newStateEV.longitude };
-          // newStateEV.path.push(evLatLngObj);
+          let evLatLngObj = { lat: parseFloat(evCar['LatitudeInDeg']), lng: parseFloat(evCar['LongitudeInDeg']) };
           newStateEV.path = [...newStateEV.path, evLatLngObj];
           newStateEV.speed = evCar['SpeedInMetersPerSec'];
           newStateEV.timeToDest = evCar['TimeToDestSec'].toString();
           newStateEV.heading = parseFloat(evCar['HeadingInDeg']);
+          newStateEV.latitude = evLatLngObj.lat;
+          newStateEV.longitude = evLatLngObj.lng;
         }
 
         if (newStateRV) {
-          newStateRV.latitude = parseFloat(rvCar['LatitudeInDeg']);
-          newStateRV.longitude = parseFloat(rvCar['LongitudeInDeg']);
-          let rvLatLngObj = { lat: newStateRV.latitude, lng: newStateRV.longitude };
-          // newStateRV.path.push(rvLatLngObj);
+          let rvLatLngObj = { lat: parseFloat(rvCar['LatitudeInDeg']), lng: parseFloat(rvCar['LongitudeInDeg']) };
           newStateRV.path = [...newStateRV.path, rvLatLngObj];
           newStateRV.speed = rvCar['SpeedInMetersPerSec'];
           newStateRV.timeToDest = rvCar['TimeToDestSec'].toString();
           newStateRV.heading = parseFloat(rvCar['HeadingInDeg']);
+          newStateRV.latitude = rvLatLngObj.lat;
+          newStateRV.longitude = rvLatLngObj.lng;
         }
       }
       return newState;

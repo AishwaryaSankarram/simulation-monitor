@@ -3,6 +3,7 @@ import React from 'react';
 import PreviewPolylines  from './preview-polylines';
 import WarningMarkers from './warning-markers';
 import Vehicles from './vehicles';
+import CarPath from './car-path';
 
 import { withGoogleMap, GoogleMap} from "react-google-maps";
 import Routes from "./routes";
@@ -42,6 +43,7 @@ export const MyMapComponent = compose(
   {props.mapView.previewMode && <PreviewPolylines mapObj={props.mapObj} />}
   {props.mapView.playMode &&
     <div>
+      <CarPath />
       <Vehicles mapObj={props.mapObj} />
       <Routes />
       <WarningMarkers />

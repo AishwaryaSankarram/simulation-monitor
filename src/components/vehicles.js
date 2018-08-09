@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Polyline, Marker } from 'react-google-maps';
+import { Marker } from 'react-google-maps';
 import { carIcon } from '../images/car-icon';
 import { connect } from 'react-redux';
 
@@ -27,16 +27,13 @@ export class Vehicles extends Component {
           }
     }
     let carMarkers = this.props.cars.map( (car,index) => {
-      let polyOptions = { strokeColor: car.color || "#000000" };
       let icon = Object.assign({}, carIcon);
       icon.rotation = car.heading;
       icon.strokeColor = car.color || "#000000";
       icon.fillColor = car.color || "#000000";
       let pos = {lat: parseFloat(car.latitude), lng: parseFloat(car.longitude)};
-      // let carPath = car.path ? [].concat(car.path) : [];
       return(
         <div key={"car_veh_" + index}>
-          <Polyline key={"poly_veh_" + index} path={car.path} options={polyOptions} />
           <Marker key={"markers_veh_" + index} position={pos} icon={icon} />
         </div>
       );

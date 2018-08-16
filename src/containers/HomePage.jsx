@@ -47,10 +47,9 @@ class HomePage extends Component {
     let content = JSON.parse(msg.data);
     if (window.socketStart){ //Process data only when the socket is up ! (Fix for data coming after stop clicked)
     if (content && content["AwarenessData"]){
+        // console.log('RECEIVING : ', parseInt(content["messageID"], 10), " at time ", new Date().toLocaleTimeString() + " " + new Date().getMilliseconds());
         self.displayWarnings(content);
     }
-    if(content)
-      console.log('RECEIVING : ', parseInt(content["messageID"], 10), " at time ", new Date().toLocaleTimeString() + " " + new Date().getMilliseconds());
     self.props.newCarData(content);
     }
   }
